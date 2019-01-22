@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -595,6 +595,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Controllers
       objectReference: {fileID: 0}
+    - target: {fileID: 4224732567587512074, guid: 6d9d81e80a2192541a9b649559c12992,
+        type: 3}
+      propertyPath: axleInfos.Array.data[0].leftWheel
+      value: 
+      objectReference: {fileID: 4088386046051954860}
+    - target: {fileID: 4224732567587512074, guid: 6d9d81e80a2192541a9b649559c12992,
+        type: 3}
+      propertyPath: axleInfos.Array.data[0].rightWheel
+      value: 
+      objectReference: {fileID: 4079703438672837740}
+    - target: {fileID: 4224732567587512074, guid: 6d9d81e80a2192541a9b649559c12992,
+        type: 3}
+      propertyPath: axleInfos.Array.data[1].leftWheel
+      value: 
+      objectReference: {fileID: 5513104656374403058}
+    - target: {fileID: 4224732567587512074, guid: 6d9d81e80a2192541a9b649559c12992,
+        type: 3}
+      propertyPath: axleInfos.Array.data[1].rightWheel
+      value: 
+      objectReference: {fileID: 5520346913538963288}
     - target: {fileID: 4224732565759576460, guid: 6d9d81e80a2192541a9b649559c12992,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -650,26 +670,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4224732567587512074, guid: 6d9d81e80a2192541a9b649559c12992,
-        type: 3}
-      propertyPath: axleInfos.Array.data[0].leftWheel
-      value: 
-      objectReference: {fileID: 4088386046051954860}
-    - target: {fileID: 4224732567587512074, guid: 6d9d81e80a2192541a9b649559c12992,
-        type: 3}
-      propertyPath: axleInfos.Array.data[0].rightWheel
-      value: 
-      objectReference: {fileID: 4079703438672837740}
-    - target: {fileID: 4224732567587512074, guid: 6d9d81e80a2192541a9b649559c12992,
-        type: 3}
-      propertyPath: axleInfos.Array.data[1].leftWheel
-      value: 
-      objectReference: {fileID: 5513104656374403058}
-    - target: {fileID: 4224732567587512074, guid: 6d9d81e80a2192541a9b649559c12992,
-        type: 3}
-      propertyPath: axleInfos.Array.data[1].rightWheel
-      value: 
-      objectReference: {fileID: 5520346913538963288}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d9d81e80a2192541a9b649559c12992, type: 3}
 --- !u!146 &5513104656374403058 stripped
