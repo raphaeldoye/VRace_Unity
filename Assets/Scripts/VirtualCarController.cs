@@ -4,22 +4,15 @@ using UnityEngine;
 
 public class VirtualCarController : CarController
 {
-	[SerializeField] protected float maxMotorTorque;
-	[SerializeField] protected float maxSteeringAngle;
-	[SerializeField] protected float minSteeringAngle;
-	[SerializeField] protected float maxSpeed;
-	[SerializeField] protected List<AxleInfo> axleInfos;
+	[SerializeField] private float maxMotorTorque;
+	[SerializeField] private float maxSteeringAngle;
+	[SerializeField] private float minSteeringAngle;
+	[SerializeField] private List<AxleInfo> axleInfos;
 
 	public bool forward = true;
 	public bool directionChanged = false;
 
-	public override float CalculateSpeed(Rigidbody rigidBody)
-	{
-		speed = rigidBody.velocity.magnitude * speedConstant;
-		return speed;
-	}
-
-	public override void CarControl(Rigidbody rigidBody)
+	public override void CarControl()
 	{
 		float torqueIntensity = Input.GetAxis("Vertical");
 		float steeringIntensity = Input.GetAxis("Horizontal");
@@ -30,10 +23,15 @@ public class VirtualCarController : CarController
 		foreach (var axleInfo in axleInfos)
 		{
 			if (axleInfo.motor && !isBraking)
-				SetMotorTorque(axleInfo, torqueIntensity);
+				SetMotorTorque(torqueIntensity, axleInfo);
 			if (axleInfo.steering)
-				SetSteeringAngle(axleInfo, steeringIntensity);
+				SetSteeringAngle(steeringIntensity, axleInfo);
 		}
+	}
+
+	public override float GetCurrentSpeed()
+	{
+		return CalculateSpeed();
 	}
 
 	protected override void SetBrakeTorque(float intensity)
@@ -70,7 +68,7 @@ public class VirtualCarController : CarController
 		}
 	}
 
-	protected override void SetMotorTorque(AxleInfo axle, float intensity)
+	protected override void SetMotorTorque(float intensity, AxleInfo axle = null)
 	{
 		if (intensity == 0 && Mathf.Abs(speed) > 5) // freinage pour la deceleration de la voiture lorsqu'on appuie pas sur le gaz. on arrête le freinage en dessous de 10kmh
 		{
@@ -95,7 +93,7 @@ public class VirtualCarController : CarController
 		}
 	}
 
-	protected override void SetSteeringAngle(AxleInfo axle, float intensity)
+	protected override void SetSteeringAngle(float intensity, AxleInfo axle = null)
 	{
 		axle.rightWheel.steerAngle = (-((maxSteeringAngle - minSteeringAngle) / maxSpeed) * speed + maxSteeringAngle) * intensity;
 		axle.leftWheel.steerAngle = (-((maxSteeringAngle - minSteeringAngle) / maxSpeed) * speed + maxSteeringAngle) * intensity;
