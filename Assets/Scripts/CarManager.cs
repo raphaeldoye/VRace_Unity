@@ -14,6 +14,7 @@ public class CarManager : MonoBehaviour
 	private bool simulation;
 	private CarController car;
 	private Rigidbody carRigidBody;
+	private bool locked = true;
 
 	private void Start()
 	{
@@ -44,12 +45,25 @@ public class CarManager : MonoBehaviour
 
 	private void UpdateCarControl()
 	{
-		speed = car.CalculateSpeed();
-		car.CarControl();
+		if (!locked)
+		{
+			speed = car.CalculateSpeed();
+			car.CarControl();
+		}
 	}
 
 	private void UpdateEngineSound()
 	{
 		EngineSound.pitch = 1 + ((maxEngineSoundPitch - 1) * car.GetCurrentSpeed() / car.GetMaxSpeed());
+	}
+
+	public void LockMovement()
+	{
+		locked = true;
+	}
+
+	public void UnlockMovement()
+	{
+		locked = false;
 	}
 }

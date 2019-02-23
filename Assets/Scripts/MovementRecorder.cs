@@ -8,6 +8,7 @@ public class MovementRecorder : MonoBehaviour
 	VehicleTransforms transforms;
 	bool savedOnce = false;
 	string path = "Assets/Resources/vehicleTransforms.txt";
+	bool record = false;
 
 
 	void Start()
@@ -28,7 +29,7 @@ public class MovementRecorder : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (!savedOnce)
+		if (!savedOnce && record)
 		{
 			AddCarPosition();
 		}
@@ -53,6 +54,18 @@ public class MovementRecorder : MonoBehaviour
 	void WriteToFile(string jsonText)
 	{
 		File.WriteAllText(path, jsonText);
+	}
+
+	public void StartRecording()
+	{
+		record = true;
+	}
+
+	public void StoptRecording()
+	{
+		record = false;
+		SaveMovements();
+		savedOnce = true;
 	}
 }
 
