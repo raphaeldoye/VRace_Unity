@@ -23,4 +23,5 @@ public class MapStore : MonoBehaviour
 public struct DefaultMap
 {
 	public Material groundMaterial;
+	public GameObject externalWall;
 }

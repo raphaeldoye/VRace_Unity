@@ -8,10 +8,12 @@ using System.Linq;
 [Serializable]
 public class MapBuilder
 {
+	public float magicScaleNumber = 1.01f;
 	public Wall externalWalls;
 	public List<Wall> internalWalls;
 
 	private GameObject map;
+	private GameObject ground;
 
 	public MapBuilder()
 	{
@@ -22,6 +24,7 @@ public class MapBuilder
 	public void BuildMap()
 	{
 		CreateGround();
+		CreateExternalWall();
 	}
 
 	public void BuildMiniMap()
@@ -29,21 +32,74 @@ public class MapBuilder
 
 	}
 
-	/*private void CreateExternalWall()
+	private void CreateExternalWall()
 	{
-		GameObject cube;
+	//	float[] rotationList = { -90f, 0f, 90f, 180f };
+		GameObject wall = MapStore.instance.defaultMap.externalWall;
+		Vector3 wallSize = wall.GetComponent<Renderer>().bounds.size;
+		//int coordinatesNb = externalWalls.coordinates.Count;
+		List<Vector3> coordinates = ground.GetComponent<MeshFilter>().mesh.vertices.ToList<Vector3>();
+		coordinates.RemoveAt(0);
+		int coordinatesNb = coordinates.Count;
 
-		for (int i = 0; i < externalWalls.coordinates.Count; i++)
+		for (int i = 0; i < coordinatesNb; i++)
 		{
-			cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			coordinates[i] = ground.transform.TransformPoint(coordinates[i]);
 		}
-		cube.transform.position = new Vector3(0, 0.5f, 0);
+
+		for (int i = 0; i < coordinatesNb; i++)
+		{
+			float distance = Vector3.Distance(coordinates[i], coordinates[(i + 1)% coordinatesNb]);
+			float rotation = GetAngle(coordinates[i], coordinates[(i + 1) % coordinatesNb]);// Vector3.Angle(externalWalls.coordinates[i], externalWalls.coordinates[(i + 1)% coordinatesNb]);
+			float wallsNb = distance / wallSize.x;
+			wallsNb++;
+
+			GameObject anchor = new GameObject("anchor" + i);
+			//Vector3 decalage = new Vector3(wallSize.x / 2, 0, wallSize.z / 2);
+//			anchor.transform.position = externalWalls.coordinates[i];
+
+			for (int j = 0; j < wallsNb; j++)
+			{
+				Vector3 position = coordinates[i] + j * (coordinates[(i + 1)%coordinatesNb] - coordinates[i]) / wallsNb; // Because Logic!
+				GameObject newWall = GameObject.Instantiate(wall);
+				newWall.transform.SetParent(anchor.transform);
+			//	position = new Vector3(position.x - (wallSize.x / 2), 0, position.z - wallSize.z / 2.0f);
+				newWall.transform.position = position;//new Vector3((wallSize.x / 2) + (wallSize.x * (j)), 0, wallSize.z/ 2.0f);
+				newWall.transform.eulerAngles = new Vector3(newWall.transform.eulerAngles.x, newWall.transform.eulerAngles.y + rotation, newWall.transform.eulerAngles.z);
+			}
+			//anchor.transform.eulerAngles = new Vector3(0, rotationList[i], 0);
+		}
 		//https://answers.unity.com/questions/1379156/instantiate-objects-in-a-line-between-two-points.html
-	}*/
+	}
+
+	private float GetAngle(Vector3 pointA, Vector3 pointB)
+	{
+		Vector3 difference = pointB - pointA;
+		Vector3 newPoint = pointB;
+		float longestValue = 0;
+
+
+		if (Mathf.Abs(difference.x) > longestValue)
+		{
+			longestValue = Mathf.Abs(difference.x);
+			newPoint = new Vector3(pointB.x, 0, pointA.z);
+		}
+
+		if (Mathf.Abs(difference.z) > longestValue)
+		{
+			longestValue = Mathf.Abs(difference.z);
+			newPoint = new Vector3(pointB.z, 0, pointA.z);
+		}
+
+		float rotation = Vector3.Angle(pointA, pointB);
+		
+		return -Vector3.Angle(pointB - pointA, newPoint - pointA);
+	}
 
 	private void CreateGround()
 	{
-		GameObject ground = new GameObject("Ground");
+		ground = new GameObject("Ground");
+		//Vector3 wallSize = MapStore.instance.defaultMap.externalWall.GetComponent<Renderer>().bounds.size;
 
 		List<Vector3> poly = externalWalls.coordinates;
 		MeshFilter mf = ground.AddComponent<MeshFilter>();
@@ -51,7 +107,6 @@ public class MapBuilder
 
 		Mesh mesh = new Mesh();
 		mf.mesh = mesh;
-
 		ground.AddComponent<MeshCollider>();
 		Rigidbody rb = ground.AddComponent<Rigidbody>();
 		rb.useGravity = false;
@@ -83,7 +138,7 @@ public class MapBuilder
 		triangles[(poly.Count - 1) * 3 + 1] = 0;
 		triangles[(poly.Count - 1) * 3 + 2] = poly.Count;
 
-		mesh.triangles = triangles.Reverse().ToArray();
+		mesh.triangles = triangles;//.Reverse().ToArray();
 		mesh.uv = BuildUVs(vertices);
 
 		mesh.RecalculateBounds();
@@ -93,6 +148,7 @@ public class MapBuilder
 		rend.material = MapStore.instance.defaultMap.groundMaterial;
 		
 		ground.transform.position = center;
+		ground.transform.localScale = new Vector3(magicScaleNumber, magicScaleNumber, magicScaleNumber);
 	}
 
 	Vector3 FindCenter(List<Vector3> coordinates)
