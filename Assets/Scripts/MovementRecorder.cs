@@ -24,7 +24,6 @@ public class MovementRecorder : MonoBehaviour
 			SaveMovements();
 			savedOnce = true;
 		}
-
 	}
 
 	private void FixedUpdate()

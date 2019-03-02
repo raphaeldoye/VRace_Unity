@@ -11,20 +11,26 @@ public class MapBuilder
 	public float magicScaleNumber = 1.01f;
 	public Wall externalWalls;
 	public List<Wall> internalWalls;
+	static System.Random rnd;
 
 	private GameObject map;
-	private GameObject ground;
 
 	public MapBuilder()
 	{
 		externalWalls = new Wall();
 		internalWalls = new List<Wall>();
+		rnd = new System.Random();
 	}
 
 	public void BuildMap()
 	{
-		CreateGround();
-		CreateExternalWall();
+		map = new GameObject("MAP");
+
+		GameObject ground = CreateGround();
+		ground.transform.SetParent(map.transform);
+
+		CreateExternalWalls(ground);
+		CreateInternalWalls();
 	}
 
 	public void BuildMiniMap()
@@ -32,83 +38,142 @@ public class MapBuilder
 
 	}
 
-	private void CreateExternalWall()
+	private void CreateInternalWalls()
 	{
-	//	float[] rotationList = { -90f, 0f, 90f, 180f };
-		GameObject wall = MapStore.instance.defaultMap.externalWall;
-		Vector3 wallSize = wall.GetComponent<Renderer>().bounds.size;
-		//int coordinatesNb = externalWalls.coordinates.Count;
-		List<Vector3> coordinates = ground.GetComponent<MeshFilter>().mesh.vertices.ToList<Vector3>();
-		coordinates.RemoveAt(0);
+		GameObject extWalls = new GameObject("InternalWalls");
+		extWalls.transform.SetParent(map.transform);
+
+		List<GameObject> walls = MapStore.instance.GetSelectedMap().internalWalls;
+
+		for (int i = 0; i < internalWalls.Count; i++)
+		{
+			CreateWall(internalWalls[i].coordinates, walls, "InternalWall", extWalls, 0, true);
+		}		
+	}
+
+	private void CreateExternalWalls(GameObject ground)
+	{
+		GameObject extWalls = new GameObject("ExternalWalls");
+		extWalls.transform.SetParent(map.transform);
+
+		List<GameObject> walls = MapStore.instance.GetSelectedMap().externalWalls;
+		int addWall = MapStore.instance.GetSelectedMap().additionalWalls;
+
+		CreateWall(GetWorldMeshCoordinates(ground), walls, "ExternalWall", extWalls, addWall);
+	}
+
+
+	private void CreateWall(List<Vector3> coordinates, List<GameObject> walls, string name, GameObject parent, int additionalWalls, bool internDecalage = false)
+	{		 
 		int coordinatesNb = coordinates.Count;
 
 		for (int i = 0; i < coordinatesNb; i++)
 		{
-			coordinates[i] = ground.transform.TransformPoint(coordinates[i]);
-		}
-
-		for (int i = 0; i < coordinatesNb; i++)
-		{
 			float distance = Vector3.Distance(coordinates[i], coordinates[(i + 1)% coordinatesNb]);
-			float rotation = GetAngle(coordinates[i], coordinates[(i + 1) % coordinatesNb]);// Vector3.Angle(externalWalls.coordinates[i], externalWalls.coordinates[(i + 1)% coordinatesNb]);
-			float wallsNb = distance / wallSize.x;
-			wallsNb++;
+			float rotation = GetAngle(coordinates[i], coordinates[(i + 1) % coordinatesNb]);
+			int wallsNb = GetWallsNum(walls[0], distance);
 
-			GameObject anchor = new GameObject("anchor" + i);
-			//Vector3 decalage = new Vector3(wallSize.x / 2, 0, wallSize.z / 2);
-//			anchor.transform.position = externalWalls.coordinates[i];
+			GameObject anchor = new GameObject(name + i); //container
+			anchor.transform.SetParent(parent.transform);			
 
-			for (int j = 0; j < wallsNb; j++)
-			{
-				Vector3 position = coordinates[i] + j * (coordinates[(i + 1)%coordinatesNb] - coordinates[i]) / wallsNb; // Because Logic!
-				GameObject newWall = GameObject.Instantiate(wall);
+			for (int j = 0; j < wallsNb + additionalWalls; j++)
+			{				
+				GameObject newWall = GameObject.Instantiate(walls[rnd.Next(walls.Count)]); // instantiate a wall in the list randomly
+				Vector3 newWallSize = ScaleWall(newWall, wallsNb, distance);
 				newWall.transform.SetParent(anchor.transform);
-			//	position = new Vector3(position.x - (wallSize.x / 2), 0, position.z - wallSize.z / 2.0f);
-				newWall.transform.position = position;//new Vector3((wallSize.x / 2) + (wallSize.x * (j)), 0, wallSize.z/ 2.0f);
+				newWall.transform.position = GetPosition(coordinates[i], coordinates[(i + 1) % coordinatesNb],j, newWallSize, wallsNb, internDecalage);
 				newWall.transform.eulerAngles = new Vector3(newWall.transform.eulerAngles.x, newWall.transform.eulerAngles.y + rotation, newWall.transform.eulerAngles.z);
 			}
-			//anchor.transform.eulerAngles = new Vector3(0, rotationList[i], 0);
 		}
-		//https://answers.unity.com/questions/1379156/instantiate-objects-in-a-line-between-two-points.html
 	}
 
 	private float GetAngle(Vector3 pointA, Vector3 pointB)
 	{
 		Vector3 difference = pointB - pointA;
 		Vector3 newPoint = pointB;
-		float longestValue = 0;
-
+		int rotationDirection = 1;
+		float longestValue = 0;		
 
 		if (Mathf.Abs(difference.x) > longestValue)
 		{
 			longestValue = Mathf.Abs(difference.x);
-			newPoint = new Vector3(pointB.x, 0, pointA.z);
+
+			if (difference.x > 0)
+				newPoint = new Vector3(0, 0, pointA.z);
+			else
+				newPoint = new Vector3(pointB.x, 0, pointA.z);
 		}
 
 		if (Mathf.Abs(difference.z) > longestValue)
 		{
-			longestValue = Mathf.Abs(difference.z);
-			newPoint = new Vector3(pointB.z, 0, pointA.z);
+			//longestValue = Mathf.Abs(difference.z);
+			newPoint = new Vector3(0, 0, pointA.z);
 		}
 
-		float rotation = Vector3.Angle(pointA, pointB);
-		
-		return -Vector3.Angle(pointB - pointA, newPoint - pointA);
+		rotationDirection = pointB.z >= pointA.z ? 1 : -1;		
+		return rotationDirection * Vector3.Angle(pointB - pointA, newPoint - pointA);
+	}
+	private Vector3 GetPosition(Vector3 coordinateA, Vector3 coordinateB, int iteration, Vector3 wallSize, int wallsNb, bool internDecalage)
+	{
+		Vector3 position = coordinateA + iteration * (coordinateB - coordinateA) / wallsNb; // Because Logic!
+		Vector3 differenceX = (coordinateB - coordinateA).normalized;
+		Vector3 differenceZ = new Vector3(-differenceX.z, differenceX.y, differenceX.x);
+		differenceX *= (wallSize.x / 2);
+		differenceZ *= (wallSize.z / 2);
+
+		if (internDecalage)
+			differenceZ *= -1;	
+
+		return new Vector3(position.x, position.y, position.z) + differenceX + differenceZ;
 	}
 
-	private void CreateGround()
+	private List<Vector3> GetWorldMeshCoordinates(GameObject mesh)
 	{
-		ground = new GameObject("Ground");
-		//Vector3 wallSize = MapStore.instance.defaultMap.externalWall.GetComponent<Renderer>().bounds.size;
+		List<Vector3> coordinates = mesh.GetComponent<MeshFilter>().mesh.vertices.ToList<Vector3>();
+		for (int i = 0; i < coordinates.Count; i++)
+		{
+			coordinates[i] = mesh.transform.TransformPoint(coordinates[i]);
+		}
+		coordinates.RemoveAt(0);
+		return coordinates;
+	}
 
+	private int GetWallsNum(GameObject wall, float distance)
+	{
+		Vector3 wallSize = wall.GetComponent<Renderer>().bounds.size;
+		return Mathf.RoundToInt(distance / wallSize.x);
+	}
+
+	private Vector3 ScaleWall(GameObject wall, int wallsNb, float distance)
+	{
+		Vector3 wallSize = wall.GetComponent<Renderer>().bounds.size;
+		float desireWallSize = distance / wallsNb;
+
+		Vector3 scale = wall.transform.localScale;
+		scale.x = desireWallSize * scale.x / wallSize.x;
+		wall.transform.localScale = scale;
+
+		return wall.GetComponent<Renderer>().bounds.size;
+	}
+
+	private GameObject CreateGround()
+	{
+		GameObject ground = new GameObject("Ground");
+		CreateMesh(ground);
+		Renderer rend = ground.AddComponent<MeshRenderer>();
+		rend.material = MapStore.instance.GetSelectedMap().groundMaterial;
+		return ground;
+	}
+
+	private void CreateMesh(GameObject newObject)
+	{
 		List<Vector3> poly = externalWalls.coordinates;
-		MeshFilter mf = ground.AddComponent<MeshFilter>();
-		
+		MeshFilter mf = newObject.AddComponent<MeshFilter>();		
 
 		Mesh mesh = new Mesh();
 		mf.mesh = mesh;
-		ground.AddComponent<MeshCollider>();
-		Rigidbody rb = ground.AddComponent<Rigidbody>();
+		newObject.AddComponent<MeshCollider>();
+		Rigidbody rb = newObject.AddComponent<Rigidbody>();
 		rb.useGravity = false;
 		rb.isKinematic = true;
 
@@ -144,11 +209,8 @@ public class MapBuilder
 		mesh.RecalculateBounds();
 		mesh.RecalculateNormals();
 
-		Renderer rend = ground.AddComponent<MeshRenderer>();
-		rend.material = MapStore.instance.defaultMap.groundMaterial;
-		
-		ground.transform.position = center;
-		ground.transform.localScale = new Vector3(magicScaleNumber, magicScaleNumber, magicScaleNumber);
+		newObject.transform.position = center;
+		//newObject.transform.localScale = new Vector3(magicScaleNumber, magicScaleNumber, magicScaleNumber);
 	}
 
 	Vector3 FindCenter(List<Vector3> coordinates)

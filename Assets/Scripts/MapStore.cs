@@ -6,7 +6,9 @@ public class MapStore : MonoBehaviour
 {
 	public static MapStore instance = null;
 
-	public DefaultMap defaultMap;
+	[SerializeField] private Map containerMap;
+	[SerializeField] private Map iceLandMap;
+	private Map selectedMap;
 
 	void Awake()
 	{
@@ -18,10 +20,36 @@ public class MapStore : MonoBehaviour
 
 		DontDestroyOnLoad(gameObject);
 	}
+
+	private void Start()
+	{
+		switch (GameRules.instance.selectedMap)
+		{
+			case GameRules.MapsList.container:
+				selectedMap = containerMap;
+				break;
+			case GameRules.MapsList.iceland:
+				selectedMap = iceLandMap;
+				break;
+			default:
+				selectedMap = containerMap;
+				break;
+		}
+	}
+
+	public Map GetSelectedMap()
+	{
+		return selectedMap;
+	}
 }
 [Serializable]
-public struct DefaultMap
+public class Map
 {
 	public Material groundMaterial;
-	public GameObject externalWall;
+	[Header("external walls settings")]
+	public List<GameObject> externalWalls;
+	public int additionalWalls = 0;
+	[Header("internal walls settings")]
+	public List<GameObject> internalWalls;
+
 }
