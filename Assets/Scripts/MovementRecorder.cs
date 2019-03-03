@@ -9,6 +9,7 @@ public class MovementRecorder : MonoBehaviour
 	bool savedOnce = false;
 	string path = "Assets/Resources/vehicleTransforms.txt";
 	bool record = false;
+	public Transform trackerTransform;
 
 
 	void Start()
@@ -36,9 +37,10 @@ public class MovementRecorder : MonoBehaviour
 
 	void AddCarPosition()
 	{
+
 		VehicleTransform v = new VehicleTransform
 		{
-			position = transform.position,
+			position = trackerTransform.position,
 			rotation = transform.eulerAngles
 		};
 		transforms.Push(v);

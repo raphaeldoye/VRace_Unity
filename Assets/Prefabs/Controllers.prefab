@@ -77,9 +77,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deceleration: 2
   brake: 10
+  maxSpeed: 1
   speed: 0
   isBraking: 0
-  maxSpeed: 1
+  speedMultiplier: 0
 --- !u!1 &4224732567587512072
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,12 +126,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deceleration: 1000
   brake: Infinity
+  maxSpeed: 250
   speed: 0
   isBraking: 0
   maxMotorTorque: 1500
   maxSteeringAngle: 25
   minSteeringAngle: 5
-  maxSpeed: 250
   axleInfos:
   - leftWheel: {fileID: 0}
     rightWheel: {fileID: 0}

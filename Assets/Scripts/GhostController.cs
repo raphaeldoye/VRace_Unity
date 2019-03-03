@@ -10,6 +10,7 @@ public class GhostController : MonoBehaviour
 	VehicleTransform vTransform;
 	string path = "Assets/Resources/vehicleTransforms.txt";
 	private bool locked = true;
+	public Vector3 decalage = Vector3.zero;
 
 	void Start()
     {
@@ -24,7 +25,7 @@ public class GhostController : MonoBehaviour
 			if (!vTransforms.Empty())
 			{
 				vTransform = vTransforms.Dequeue();
-				transform.position = vTransform.position;
+				transform.position = vTransform.position + decalage;
 				transform.eulerAngles = vTransform.rotation;
 			}
 			else

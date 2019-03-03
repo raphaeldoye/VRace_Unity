@@ -1,9 +1,7 @@
 fileFormatVersion: 2
 guid: eee8d211311db1e4cb5fe14c6aac6037
-timeCreated: 1547244692
-licenseType: Free
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Body
     100002: Collider
@@ -13,6 +11,7 @@ ModelImporter:
     100010: Wheel_FR
     100012: Wheel_RL
     100014: Wheel_RR
+    100016: Lamborginhi_Aventador
     400000: Body
     400002: Collider
     400004: Glass
@@ -21,6 +20,7 @@ ModelImporter:
     400010: Wheel_FR
     400012: Wheel_RL
     400014: Wheel_RR
+    400016: Lamborginhi_Aventador
     2100000: Lamborginhi_base_phong
     2100002: Lamborginhi_glass_phong
     2100004: Lamborginhi_collider_lambert
@@ -65,6 +65,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -79,6 +80,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -96,11 +98,16 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.19999999
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -115,7 +122,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
