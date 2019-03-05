@@ -11,6 +11,7 @@ public class MapBuilder
 	public float magicScaleNumber = 1.01f;
 	public Wall externalWalls;
 	public List<Wall> internalWalls;
+	public Wall startLine;
 	static System.Random rnd;
 
 	private GameObject map;
@@ -19,6 +20,7 @@ public class MapBuilder
 	{
 		externalWalls = new Wall();
 		internalWalls = new List<Wall>();
+		startLine = new Wall();
 		rnd = new System.Random();
 	}
 
@@ -31,11 +33,22 @@ public class MapBuilder
 
 		CreateExternalWalls(ground);
 		CreateInternalWalls();
+		CreateStartLine();
 	}
 
 	public void BuildMiniMap()
 	{
 
+	}
+
+	private void CreateStartLine()
+	{
+		GameObject extWalls = new GameObject("StartLine");
+		extWalls.transform.SetParent(map.transform);
+
+		List<GameObject> startLineObjects = MapStore.instance.GetSelectedMap().startLine_Floor;
+
+		CreateWall(startLine.coordinates, startLineObjects, "startLine", extWalls, 0);
 	}
 
 	private void CreateInternalWalls()

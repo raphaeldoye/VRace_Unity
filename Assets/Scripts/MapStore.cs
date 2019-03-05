@@ -51,5 +51,7 @@ public class Map
 	public int additionalWalls = 0;
 	[Header("internal walls settings")]
 	public List<GameObject> internalWalls;
+	[Header("start Line settings")]
+	public List<GameObject> startLine_Floor;
 
 }

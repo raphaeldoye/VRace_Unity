@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 	public bool mapTestMode;
 	public string externalWallsFilePath;
 	public string internalWallsFilePath;
+	public string startLineFilePath;
 	//////
 
 	void Awake()
@@ -78,11 +79,13 @@ public class GameManager : MonoBehaviour
 		{
 			JsonUtility.FromJsonOverwrite(GetTextFromFile(externalWallsFilePath), map);
 			JsonUtility.FromJsonOverwrite(GetTextFromFile(internalWallsFilePath), map);
+			JsonUtility.FromJsonOverwrite(GetTextFromFile(startLineFilePath), map);
 		}
 		else
 		{
 			JsonUtility.FromJsonOverwrite(""/*UdpClient.instance.GetExternalWalls()*/, map);
 			JsonUtility.FromJsonOverwrite(""/*UdpClient.instance.GetInternalWalls()*/, map);
+			JsonUtility.FromJsonOverwrite(""/*UdpClient.instance.GetStartLine()*/, map);
 		}
 
 		map.BuildMap();
