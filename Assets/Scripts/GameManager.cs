@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
+using Client.Communication;
 
 public class GameManager : MonoBehaviour
 {
@@ -56,7 +57,15 @@ public class GameManager : MonoBehaviour
 
 	public void StartRace()
 	{
-		ShowLoadingScreen();
+        Server server = new Server("127.0.0.1", 53000);
+        server.Connect();
+
+        var record = server.GetMapRecord();
+        var externalWalls = server.GetExternalWalls();
+        var internalWalls = server.GetInternalWalls();
+        var startLine = server.GetStartLine();
+
+        ShowLoadingScreen();
 		//UdpClient.instance.GetMapRecord();
 		BuildWalls();		
 		//UdpClient.StartGame();

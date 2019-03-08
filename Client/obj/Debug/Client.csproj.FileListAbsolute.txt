@@ -1,0 +1,16 @@
+C:\Users\mickm\source\repos\Socket Test\Client\bin\Debug\Client.pdb
+C:\Users\mickm\source\repos\Socket Test\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+C:\Users\mickm\source\repos\Socket Test\Client\obj\Debug\Client.pdb
+C:\Users\mickm\source\repos\Socket Test\Client\bin\Debug\Newtonsoft.Json.dll
+C:\Users\mickm\source\repos\Socket Test\Client\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\mickm\source\repos\Socket Test\Client\bin\Debug\Newtonsoft.Json.xml
+C:\Users\mickm\source\repos\Socket Test\Client\obj\Debug\Client.csproj.CopyComplete
+C:\Users\mickm\source\repos\Socket Test\Client\bin\Debug\Client.dll.config
+C:\Users\mickm\source\repos\Socket Test\Client\bin\Debug\Client.dll
+C:\Users\mickm\source\repos\Socket Test\Client\obj\Debug\Client.dll
+C:\Users\mickm\Documents\VRace\Assets\Client.dll.config
+C:\Users\mickm\Documents\VRace\Assets\Client.dll
+C:\Users\mickm\Documents\VRace\Assets\Client.pdb
+C:\Users\mickm\Documents\VRace\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+C:\Users\mickm\Documents\VRace\Client\obj\Debug\Client.dll
+C:\Users\mickm\Documents\VRace\Client\obj\Debug\Client.pdb
