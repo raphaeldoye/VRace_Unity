@@ -57,19 +57,20 @@ namespace Serveur
                         }
                     case ClientRequest.Position:
                         {
-                            jsonData = @"{
-                                'position': {
-                                    'x': 178.67709350585938,
-                'y': 0.00806492567062378,
-                'z': 186.9085693359375
-                                },
-            'rotation': {
-                                    'x': 0.0,
-                'y': 90.12889099121094,
-                'z': 0.0
-            }
-                            }
-                            "; //CALL DLL
+                            jsonData = @"
+                  {
+                    ""position"": {
+                            ""x"": 460.07171630859377,
+                            ""y"": 0.007579803466796875,
+                            ""z"": 868.8156127929688
+                        },
+                    ""rotation"": {
+                            ""x"": 0.0,
+                            ""y"": 168.6186981201172,
+                            ""z"": 0.0
+                        }
+                  }
+                "; //CALL DLL
                             break;
                         }
                     default:
@@ -79,7 +80,7 @@ namespace Serveur
                         }
                 }
 
-                var message = Encoding.ASCII.GetBytes(jsonData);
+                var message = Encoding.Default.GetBytes(jsonData);
 
                 Console.WriteLine(Encoding.ASCII.GetString(data, 0, data.Length));
                 newsock.Send(message, jsonData.Length, sender);
