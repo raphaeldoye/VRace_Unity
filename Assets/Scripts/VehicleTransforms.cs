@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Threading;
 
 [Serializable]
-public class VehicleTransforms
+public static class VehicleTransforms
 {
-	public List<VehicleTransform> transformsList;
+	public static List<VehicleTransform> transformsList;
+    private static Semaphore _pool;
 
-	public VehicleTransforms()
+    static VehicleTransforms()
 	{
 		transformsList = new List<VehicleTransform>();
-	}
+        _pool = new Semaphore(0, 1);
+    }
 
 	 //copy constructor 
 	/*public VehicleTransforms(VehicleTransforms vTrans)
@@ -20,31 +23,35 @@ public class VehicleTransforms
 		transformsList.AddRange(vTrans.transformsList);
 	}*/
 
-	public void Push(VehicleTransform transform)
+	public static void Push(VehicleTransform transform)
 	{
-		transformsList.Add(transform);
-	}
+        _pool.WaitOne();
+        transformsList.Add(transform);
+        _pool.Release();
+    }
 
-	public void Push(string jsonTransform)
+	public static void Push(string jsonTransform)
 	{
 		VehicleTransform vt = JsonUtility.FromJson<VehicleTransform>(jsonTransform);
 		Push(vt);
 	}
 
-	private void SetList(List<VehicleTransform> transforms)
+	private static void SetList(List<VehicleTransform> transforms)
 	{
 		transformsList.AddRange(transforms);
 	}
 
-	public List<VehicleTransform> PopAll()
+	public static List<VehicleTransform> PopAll()
 	{
-		List<VehicleTransform>  t = new List<VehicleTransform>();
+        _pool.WaitOne();
+        List<VehicleTransform>  t = new List<VehicleTransform>();
 		t.AddRange(transformsList);
 		transformsList.Clear();
-		return t;
+        _pool.Release();
+        return t;
 	}
 
-	public VehicleTransform Dequeue()
+	public static VehicleTransform Dequeue()
 	{
 		VehicleTransform vt = new VehicleTransform
 		{
@@ -59,7 +66,7 @@ public class VehicleTransforms
 		return vt;
 	}
 
-	public bool Empty()
+	public static bool Empty()
 	{
 		return transformsList.Count <= 0;
 	}

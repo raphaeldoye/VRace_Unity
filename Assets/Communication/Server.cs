@@ -2,19 +2,22 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 
 namespace Client.Communication
 {
     public class Server
     {
-        private UdpClient udpClient;
-        private IPEndPoint server;
+        private static UdpClient udpClient;
+        private static IPEndPoint server;
+        private Thread thread;
 
         public Server(string serverAddress, int port)
         {
             Console.WriteLine("Initialising server socket...");
             udpClient = new UdpClient();
             server = new IPEndPoint(IPAddress.Parse(serverAddress), port);
+            thread = new Thread(new ThreadStart(GameStream));
         }
 
         public void Connect()
@@ -121,6 +124,39 @@ namespace Client.Communication
             Console.WriteLine(startLine);
 
             return startLine;
+        }
+
+        public static string GetPosition()
+        {
+            byte[] data = new byte[1024];
+            data = Encoding.ASCII.GetBytes("Position");
+
+            //SENDING
+            udpClient.Send(data, data.Length);
+
+            //RECEIVING
+            var receivedData = udpClient.Receive(ref server);
+
+            var position = Encoding.Default.GetString(receivedData);
+
+            Console.WriteLine(position);
+
+            return position;
+        }
+
+        public void StartGame()
+        {
+            thread.Start();
+        }
+
+        public void EndGame()
+        {
+            thread.Join();
+        }
+
+        private static void GameStream()
+        {
+            VehicleTransforms.Push(GetPosition());
         }
     }
 }
