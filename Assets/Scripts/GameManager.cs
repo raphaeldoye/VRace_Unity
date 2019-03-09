@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private Canvas pauseMenu;
 	[SerializeField] private Canvas loadingScreen;
 	[SerializeField] private Text countdownText;
+	public bool serverOn = false;
 
 	private float carPauseSpeed;
 	private bool paused = false;
@@ -57,15 +58,21 @@ public class GameManager : MonoBehaviour
 
 	public void StartRace()
 	{
-        Server server = new Server("192.168.1.183", 53000);
-        server.Connect();
+		Server server = new Server("192.168.1.183", 53000);
 
-        var record = server.GetMapRecord();
-        var externalWalls = server.GetExternalWalls();
-        var internalWalls = server.GetInternalWalls();
-        var startLine = server.GetStartLine();
-		//server.StartGame();
-        ShowLoadingScreen();
+		if (serverOn)
+		{
+			server.Connect();
+
+			var record = server.GetMapRecord();
+			var externalWalls = server.GetExternalWalls();
+			var internalWalls = server.GetInternalWalls();
+			var startLine = server.GetStartLine();
+		}
+		server.StartGame();
+
+
+		ShowLoadingScreen();
 		//UdpClient.instance.GetMapRecord();
 		BuildWalls();		
 		//UdpClient.StartGame();

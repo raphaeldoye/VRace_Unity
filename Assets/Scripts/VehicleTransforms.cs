@@ -13,7 +13,7 @@ public static class VehicleTransforms
     static VehicleTransforms()
 	{
 		transformsList = new List<VehicleTransform>();
-        _pool = new Semaphore(0, 1);
+        _pool = new Semaphore(1, 1);
     }
 
 	 //copy constructor 

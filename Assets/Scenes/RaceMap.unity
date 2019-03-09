@@ -2006,6 +2006,11 @@ PrefabInstance:
       propertyPath: startLineFilePath
       value: Assets\Resources\startLine.txt
       objectReference: {fileID: 0}
+    - target: {fileID: 8032615249454820641, guid: f9d5d930f3c65df409d18ccba1a6fd1d,
+        type: 3}
+      propertyPath: serverOn
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8032615249732231326, guid: f9d5d930f3c65df409d18ccba1a6fd1d,
         type: 3}
       propertyPath: containerMap.startLine_Floor.Array.size

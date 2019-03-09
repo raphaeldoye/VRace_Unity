@@ -18,7 +18,7 @@ public class CarManager : MonoBehaviour
 
 	private void Start()
 	{
-		simulation = true; ///TODO get isSimulation
+		simulation = false; ///TODO get isSimulation
 		//get rigidBody
 		carRigidBody = GetComponent<Rigidbody>();
 		carRigidBody.centerOfMass = new Vector3(0.0f, -0.9f, 0.2f);
