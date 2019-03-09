@@ -10,7 +10,7 @@ public class GhostController : MonoBehaviour
 	public enum SporadicFilter { None, AutomateTreshold, ManualTreshold};
 	public enum SelectedValueFilter { LastValue, Mean, Mode, Median}
 
-	VehicleTransforms vTransforms;
+	//VehicleTransforms vTransforms;
 	VehicleTransform vTransform;
 	string path = "Assets/Resources/vehicleTransforms.txt";
 	private bool locked = true;
@@ -31,7 +31,7 @@ public class GhostController : MonoBehaviour
 	void Start()
     {
 		gameObject.SetActive(false);
-		vTransforms = JsonUtility.FromJson<VehicleTransforms>(GameManager.instance.GetTextFromFile(path));
+		//vTransforms = JsonUtility.FromJson<VehicleTransforms>(GameManager.instance.GetTextFromFile(path));
     }
 
 	private void FixedUpdate()
@@ -109,7 +109,7 @@ public class GhostController : MonoBehaviour
 	{
 		for (int i = 0; i < iteration; i++)
 		{
-			if (!vTransforms.Empty())
+			/*if (!vTransforms.Empty())
 			{
 				vTransform = vTransforms.Dequeue();
 				pos.Add(vTransform.position);
@@ -118,7 +118,7 @@ public class GhostController : MonoBehaviour
 			else
 			{
 				return false;
-			}
+			}*/
 		}
 
 		return true;

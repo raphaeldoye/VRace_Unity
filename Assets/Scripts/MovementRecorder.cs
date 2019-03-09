@@ -5,7 +5,7 @@ using System.IO;
 
 public class MovementRecorder : MonoBehaviour
 {
-	VehicleTransforms transforms;
+//	VehicleTransforms transforms;
 	bool savedOnce = false;
 	public string path = "Assets/Resources/vehicleTransforms.txt";
 	bool record = false;
@@ -18,7 +18,7 @@ public class MovementRecorder : MonoBehaviour
 
 	void Start()
     {
-		transforms = new VehicleTransforms();
+	//	transforms = new VehicleTransforms();
 		Directory.CreateDirectory(Path.GetDirectoryName(path));
 		rnd = new System.Random();
 	}
@@ -49,12 +49,12 @@ public class MovementRecorder : MonoBehaviour
 
 	void AddCarPosition(Vector3 pos, Vector3 rot)
 	{	
-		VehicleTransform v = new VehicleTransform
+	/*	VehicleTransform v = new VehicleTransform
 		{
 			position = pos,
 			rotation = rot
 		};
-		transforms.Push(v);
+		transforms.Push(v);*/
 	}
 
 	void AddCarPositionWithNoise(Vector3 pos, Vector3 rot)
@@ -113,8 +113,8 @@ Vector3 AddNoise(Vector3 value, int maxNoise)
 
 	void SaveMovements()
 	{
-		string sTransforms = JsonUtility.ToJson(transforms, true);
-		WriteToFile(sTransforms);
+		/*string sTransforms = JsonUtility.ToJson(transforms, true);
+		WriteToFile(sTransforms);*/
 	}
 
 	void WriteToFile(string jsonText)
