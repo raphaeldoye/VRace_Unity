@@ -18,3 +18,4 @@ C:\Users\mickm\Documents\VRace\Serveur\obj\Debug\Serveur.csproj.CoreCompileInput
 C:\Users\mickm\Documents\VRace\Serveur\obj\Debug\Serveur.csproj.CopyComplete
 C:\Users\mickm\Documents\VRace\Serveur\obj\Debug\Serveur.exe
 C:\Users\mickm\Documents\VRace\Serveur\obj\Debug\Serveur.pdb
+C:\Users\mickm\Documents\VRace\Serveur\obj\Debug\Serveur.csprojAssemblyReference.cache
