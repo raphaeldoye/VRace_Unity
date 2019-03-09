@@ -55,6 +55,23 @@ namespace Serveur
                             jsonData = "StartLine"; //CALL DLL
                             break;
                         }
+                    case ClientRequest.Position:
+                        {
+                            jsonData = @"{
+                                'position': {
+                                    'x': 178.67709350585938,
+                'y': 0.00806492567062378,
+                'z': 186.9085693359375
+                                },
+            'rotation': {
+                                    'x': 0.0,
+                'y': 90.12889099121094,
+                'z': 0.0
+            }
+                            }
+                            "; //CALL DLL
+                            break;
+                        }
                     default:
                         {
                             jsonData = "Invalid request";
