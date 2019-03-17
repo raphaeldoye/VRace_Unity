@@ -216,7 +216,6 @@ public class GhostController : MonoBehaviour
 	{
 		locked = false;
 		gameObject.SetActive(true);
-
 	}
 
 	public void LockMovement()

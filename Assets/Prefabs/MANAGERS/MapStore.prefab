@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4977148068703155848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4977148068703155854}
+  - component: {fileID: 4977148068703155849}
+  m_Layer: 0
+  m_Name: MapStore
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4977148068703155854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4977148068703155848}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -521.2129, y: -1.1712494, z: -900.8325}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4977148068703155849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4977148068703155848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efedcc1c838e95047b7e0abcd1054444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  containerMap:
+    groundMaterial: {fileID: 2100000, guid: 0349a2d87a784904cb7a5ad6d4a65c2b, type: 2}
+    externalWalls:
+    - {fileID: 3458306766806470658, guid: 0470eb0950bbffd488f96d7557914db6, type: 3}
+    - {fileID: 4912059708778632870, guid: a8a9f872a64b31942bab60c4be92e2e8, type: 3}
+    - {fileID: 3293703643365295313, guid: e5005e96f0d756c47b75c4531e36b404, type: 3}
+    - {fileID: 2343245111582122801, guid: 066ecc474e1cf2c4ea9e5b858fe45630, type: 3}
+    - {fileID: 5549962374582446323, guid: c2307b34394ccf8468627bb5b8a8fb5a, type: 3}
+    additionalWalls: 2
+    internalWalls:
+    - {fileID: 1277524240577792944, guid: 8d4e0d2c18b8c3944a492bb4900d07f3, type: 3}
+    startLine_Floor:
+    - {fileID: 4430317769189414344, guid: bd41bec8643f6b14eb5d5f4d10535d12, type: 3}
+  iceLandMap:
+    groundMaterial: {fileID: 2100000, guid: 0349a2d87a784904cb7a5ad6d4a65c2b, type: 2}
+    externalWalls: []
+    additionalWalls: 0
+    internalWalls: []
+    startLine_Floor: []

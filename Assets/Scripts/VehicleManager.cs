@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class VehicleManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	[SerializeField] private Vector3 decalage = Vector3.zero;
 
 	private void FixedUpdate()
 	{
@@ -27,7 +17,7 @@ public class VehicleManager : MonoBehaviour
 
 		if (realTransform.Count > 0)
 		{
-			transform.position = realTransform[realTransform.Count - 1].position;
+			transform.position = realTransform[realTransform.Count - 1].position + decalage;
 			transform.eulerAngles = realTransform[realTransform.Count - 1].rotation;
 		}
 	}

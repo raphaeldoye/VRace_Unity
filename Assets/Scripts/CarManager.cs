@@ -11,14 +11,13 @@ public class CarManager : MonoBehaviour
 
 
 	public float speed;
-	private bool simulation;
+	public bool simulation = false;
 	private CarController car;
 	private Rigidbody carRigidBody;
 	private bool locked = true;
 
 	private void Start()
 	{
-		simulation = false; ///TODO get isSimulation
 		//get rigidBody
 		carRigidBody = GetComponent<Rigidbody>();
 		carRigidBody.centerOfMass = new Vector3(0.0f, -0.9f, 0.2f);

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
-using Client.Communication;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private Canvas pauseMenu;
 	[SerializeField] private Canvas loadingScreen;
 	[SerializeField] private Text countdownText;
-	public bool serverOn = false;
+	
 
 	private float carPauseSpeed;
 	private bool paused = false;
@@ -58,24 +57,9 @@ public class GameManager : MonoBehaviour
 
 	public void StartRace()
 	{
-		Server server = new Server("192.168.1.183", 53000);
-
-		if (serverOn)
-		{
-			server.Connect();
-
-			var record = server.GetMapRecord();
-			var externalWalls = server.GetExternalWalls();
-			var internalWalls = server.GetInternalWalls();
-			var startLine = server.GetStartLine();
-		}
-		server.StartGame();
-
-
 		ShowLoadingScreen();
-		//UdpClient.instance.GetMapRecord();
-		BuildWalls();		
-		//UdpClient.StartGame();
+		BuildWalls();
+		UDPClient.instance.server.StartGame();
 		// maybe wait a little here
 		HideLoadingScreen();
 		StartCoroutine(StartCountdown());
@@ -99,9 +83,9 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
-			JsonUtility.FromJsonOverwrite(""/*UdpClient.instance.GetExternalWalls()*/, map);
-			JsonUtility.FromJsonOverwrite(""/*UdpClient.instance.GetInternalWalls()*/, map);
-			JsonUtility.FromJsonOverwrite(""/*UdpClient.instance.GetStartLine()*/, map);
+			JsonUtility.FromJsonOverwrite(""/*UdpClient.instance.server.GetExternalWalls()*/, map);
+			JsonUtility.FromJsonOverwrite(""/*UdpClient.instance.server.GetInternalWalls()*/, map);
+			JsonUtility.FromJsonOverwrite(""/*UdpClient.instance.server.GetStartLine()*/, map);
 		}
 
 		map.BuildMap();
