@@ -36,8 +36,17 @@ public class MapBuilder
 		CreateStartLine();
 	}
 
-	public void BuildMiniMap()
+	public void BuildMiniMap(GameObject ground)
 	{
+		//external walls
+		GameObject map = MapStore.instance.uiPanel;
+		GameObject wall = MapStore.instance.uiWall;
+		GameObject start = MapStore.instance.uiStartLine;
+		Rect rect = map.GetComponent<RectTransform>().rect;
+		Vector3 origin = rect.center - new Vector2((rect.width / 2), (rect.height / 2));
+		Bounds b = ground.GetComponent<Renderer>().bounds;
+		//b.size
+
 
 	}
 
@@ -125,10 +134,44 @@ public class MapBuilder
 
 			for (int j = 0; j < wallsNb; j++)
 			{
-				GameObject newWall = GameObject.Instantiate(wall); // instantiate a wall in the list randomly
+				GameObject newWall = GameObject.Instantiate(wall);
 				Vector3 newWallSize = ScaleWall(newWall, wallsNb, distance);
 				newWall.transform.SetParent(anchor.transform);
 				newWall.transform.position = GetPosition(coordinates[i], coordinates[(i + 1) % coordinatesNb], j, newWallSize, wallsNb, false) + decalage;
+				newWall.transform.eulerAngles = new Vector3(newWall.transform.eulerAngles.x, newWall.transform.eulerAngles.y + rotation, newWall.transform.eulerAngles.z);
+			}
+		}
+	}
+
+	private void CreateUIWall(List<Vector3> coordinates, Rect rect, float worldOrigin, float uiOrigin, Vector3 worldSize, GameObject wall, string name, GameObject parent)
+	{
+		int coordinatesNb = coordinates.Count;
+
+		for (int i = 0; i < coordinatesNb; i++)
+		{
+			// calculate new coordinate
+			Vector2 pointA = new Vector2(coordinates[i].x, coordinates[i].z);
+			Vector2 pointB = new Vector2(coordinates[(i + 1) % coordinatesNb].x, coordinates[(i + 1) % coordinatesNb].z);
+
+			pointA.x = (rect.width*(pointA.x - worldOrigin) / worldSize.z) + uiOrigin;
+			pointA.y = (rect.width * (pointA.x - worldOrigin) / worldSize.z) + uiOrigin;
+
+			pointB.x = (rect.width * (pointA.x - worldOrigin) / worldSize.z) + uiOrigin;
+			pointB.x = (rect.width * (pointA.x - worldOrigin) / worldSize.z) + uiOrigin;
+			//
+			float distance = Vector2.Distance(coordinates[i], coordinates[(i + 1) % coordinatesNb]);
+			float rotation = GetAngle(coordinates[i], coordinates[(i + 1) % coordinatesNb]);
+			int wallsNb = 1;
+
+			GameObject anchor = new GameObject(name + i); //container
+			anchor.transform.SetParent(parent.transform);
+
+			for (int j = 0; j < wallsNb; j++)
+			{
+				GameObject newWall = GameObject.Instantiate(wall);
+				Vector3 newWallSize = ScaleWall(newWall, wallsNb, distance);
+				newWall.transform.SetParent(anchor.transform);
+				newWall.transform.position = GetPosition(coordinates[i], coordinates[(i + 1) % coordinatesNb], j, newWallSize, wallsNb, false);
 				newWall.transform.eulerAngles = new Vector3(newWall.transform.eulerAngles.x, newWall.transform.eulerAngles.y + rotation, newWall.transform.eulerAngles.z);
 			}
 		}

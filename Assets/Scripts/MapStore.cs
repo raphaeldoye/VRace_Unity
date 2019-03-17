@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 public class MapStore : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class MapStore : MonoBehaviour
 
 	[SerializeField] private Map containerMap;
 	[SerializeField] private Map iceLandMap;
+	[Header("UI settings")]
+	public GameObject uiPanel;
+	public GameObject uiWall;
+	public GameObject uiStartLine;
 	private Map selectedMap;
 
 	void Awake()

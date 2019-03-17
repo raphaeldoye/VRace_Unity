@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
 		}
 
 		map.BuildMap();
-		map.BuildMiniMap();
+		//map.BuildMiniMap();
 	}
 
 	IEnumerator StartCountdown()
@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
 		myCar.UnlockMovement();
 		ghostCar.UnlockMovement();
 		recorder.StartRecording();
+		timer.instance.StartTimer();
 		started = true;
 		yield return new WaitForSeconds(1.0f);
 		countdownText.text = "";
@@ -132,7 +133,8 @@ public class GameManager : MonoBehaviour
 	{
 		if (!paused && started)
 		{
-			Time.timeScale = 0;
+			//Time.timeScale = 0;
+			timer.instance.StopTimer();
 			//carPauseSpeed = IRacer.instance.GetSpeed();
 			//IRacerController.instance.SetSpeed(0);
 			//IRacer.SendValues();
@@ -147,7 +149,8 @@ public class GameManager : MonoBehaviour
 		{
 			//IRacerController.instance.SetSpeed(carPauseSpeed);
 			//IRacer.SendValues();
-			Time.timeScale = 1;
+			//Time.timeScale = 1;
+			timer.instance.StartTimer();
 			ShowPauseMenu(false);
 			paused = false;
 		}
