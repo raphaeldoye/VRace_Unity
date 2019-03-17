@@ -705,6 +705,10 @@ PrefabInstance:
       propertyPath: virtualCar
       value: 
       objectReference: {fileID: 1185292951}
+    - target: {fileID: 1704134813, guid: 8acc7c6a91b97d740acc0ccaa84e7f58, type: 3}
+      propertyPath: simulation
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1704134812, guid: 8acc7c6a91b97d740acc0ccaa84e7f58, type: 3}
       propertyPath: zeroY
       value: 1
@@ -715,11 +719,11 @@ PrefabInstance:
       objectReference: {fileID: 1898937207}
     - target: {fileID: 1704134812, guid: 8acc7c6a91b97d740acc0ccaa84e7f58, type: 3}
       propertyPath: addNoise
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1704134812, guid: 8acc7c6a91b97d740acc0ccaa84e7f58, type: 3}
       propertyPath: savedDataPerFrame
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4079703438672837740, guid: 8acc7c6a91b97d740acc0ccaa84e7f58,
         type: 3}
@@ -855,6 +859,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 953642273, guid: 8acc7c6a91b97d740acc0ccaa84e7f58, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8acc7c6a91b97d740acc0ccaa84e7f58, type: 3}
@@ -1552,6 +1560,7 @@ MonoBehaviour:
   loadingScreen: {fileID: 1443609380}
   countdownText: {fileID: 1547607002}
   mapTestMode: 1
+  serverOn: 0
   externalWallsFilePath: Assets\Resources\externalWalls.txt
   internalWallsFilePath: Assets\Resources\internalWalls.txt
   startLineFilePath: 
@@ -1631,6 +1640,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GhostCar
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485367682161822421, guid: 9f753c855cdf5e14eac56cf998cb72d0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1364061852205758292, guid: 9f753c855cdf5e14eac56cf998cb72d0,
         type: 3}
@@ -2089,6 +2103,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CONTROLLERS
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224732566151960771, guid: 6d9d81e80a2192541a9b649559c12992,
+        type: 3}
+      propertyPath: speedMultiplier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4224732567587512074, guid: 6d9d81e80a2192541a9b649559c12992,
         type: 3}

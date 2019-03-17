@@ -360,7 +360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5483358404537011135
 Transform:
   m_ObjectHideFlags: 0
@@ -1083,9 +1083,10 @@ GameObject:
   - component: {fileID: 1704134812}
   - component: {fileID: 1704134813}
   - component: {fileID: 953642273}
-  m_Layer: 0
+  - component: {fileID: 4414671451495196335}
+  m_Layer: 9
   m_Name: Lamborghini_Aventador
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1272,6 +1273,7 @@ MonoBehaviour:
   virtualCar: {fileID: 0}
   maxEngineSoundPitch: 3
   speed: 0
+  simulation: 1
 --- !u!114 &953642273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1279,9 +1281,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8435032336611683184}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 269554b9e43de5e41aa0397d63066f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   decalage: {x: 0, y: 11.85, z: 0}
+--- !u!65 &4414671451495196335
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8435032336611683184}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.22, y: 1.59, z: 3.81}
+  m_Center: {x: 0, y: 0, z: 0}

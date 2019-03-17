@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameRules : MonoBehaviour
 {
 	public static GameRules instance = null;
+	[SerializeField] private int maxLap = 3;
 
 	public enum MapsList
 	{
@@ -22,5 +23,10 @@ public class GameRules : MonoBehaviour
 			Destroy(gameObject);
 
 		DontDestroyOnLoad(gameObject);
+	}
+
+	public int GetMaxLap()
+	{
+		return maxLap;
 	}
 }

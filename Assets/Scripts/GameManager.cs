@@ -10,15 +10,21 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private CarManager myCar;
 	[SerializeField] private GhostController ghostCar;
 	[SerializeField] private MovementRecorder recorder;
-	public int countdownTime = 3;	
+	public int countdownTime = 3;
+	public int currentLap = 0;
+	[Header("UI settings")]
 	[SerializeField] private Canvas pauseMenu;
 	[SerializeField] private Canvas loadingScreen;
 	[SerializeField] private Text countdownText;
-	
+	[SerializeField] private Text currentLapText;
+	[SerializeField] private Text maxLapText;
+
+
 
 	private float carPauseSpeed;
 	private bool paused = false;
 	private bool started = false;
+	private int lapIncrementValidator = 0;
 
 	//TEST
 	[Header("Developer Settings")]
@@ -41,6 +47,7 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
+		maxLapText.text = "/" + GameRules.instance.GetMaxLap().ToString();
 		StartRace();
 	}
 
@@ -59,7 +66,7 @@ public class GameManager : MonoBehaviour
 	{
 		ShowLoadingScreen();
 		BuildWalls();
-		UDPClient.instance.server.StartGame();
+		UDPClient.instance.StartGame();
 		// maybe wait a little here
 		HideLoadingScreen();
 		StartCoroutine(StartCountdown());
@@ -162,6 +169,30 @@ public class GameManager : MonoBehaviour
 	public void QuitGame()
 	{
 
+	}
+
+	public void SetNewLap(int increment)
+	{
+		if (lapIncrementValidator == 0 && increment == 1)
+		{
+			lapIncrementValidator += increment;
+			currentLap += 1;
+		}
+		else if (lapIncrementValidator == 1 && increment == -1)
+		{
+			lapIncrementValidator += increment;
+		}
+		else if (lapIncrementValidator == 1 && increment == 1)
+		{
+			lapIncrementValidator -= increment;
+			currentLap -= 1;
+		}
+		else if (lapIncrementValidator == 0 && increment == -1)
+		{
+			lapIncrementValidator -= increment;
+		}
+
+		currentLapText.text = currentLap.ToString();
 	}
 
 	public string GetTextFromFile(string path)

@@ -9,7 +9,7 @@ public class UDPClient : MonoBehaviour
 	public bool serverOn = true;
 	public string ipAddress = "127.0.0.1";
 	public int port = 53000;
-	public Server server;
+	private Server server;
 
 	private void Awake()
 	{
@@ -25,5 +25,21 @@ public class UDPClient : MonoBehaviour
 	private void Start()
 	{
 		server = new Server(ipAddress, port);
+	}
+
+	public void ConnectServer()
+	{
+		if (serverOn)
+		{
+			server.Connect();
+		}		
+	}
+
+	public void StartGame()
+	{
+		if (serverOn)
+		{
+			server.StartGame();
+		}
 	}
 }

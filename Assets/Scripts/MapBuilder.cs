@@ -43,12 +43,22 @@ public class MapBuilder
 
 	private void CreateStartLine()
 	{
-		GameObject extWalls = new GameObject("StartLine");
-		extWalls.transform.SetParent(map.transform);
+		GameObject line = new GameObject("StartLine");
+		GameObject triggers = new GameObject("StartLineTriggers");
+		const float decalage = 300f;
+
+		line.transform.SetParent(map.transform);
+		triggers.transform.SetParent(line.transform);
 
 		List<GameObject> startLineObjects = MapStore.instance.GetSelectedMap().startLine_Floor;
+		GameObject triggerObject = MapStore.instance.GetSelectedMap().startLineTrigger;
+		GameObject secondTriggerObject = MapStore.instance.GetSelectedMap().startLineSecondTrigger;
 
-		CreateWall(startLine.coordinates, startLineObjects, "startLine", extWalls, 0);
+		CreateWall(startLine.coordinates, startLineObjects, "startLine", line, 0);
+		CreateWall(startLine.coordinates, triggerObject, "trigger1", triggers, Vector3.zero);
+
+		Vector3 decalageVector = decalage * (new Vector3(1f,0,1f) - Vector3.Normalize(startLine.coordinates[1] - startLine.coordinates[0]));
+		CreateWall(startLine.coordinates, secondTriggerObject, "trigger2", triggers, decalageVector);
 	}
 
 	private void CreateInternalWalls()
@@ -95,6 +105,30 @@ public class MapBuilder
 				Vector3 newWallSize = ScaleWall(newWall, wallsNb, distance);
 				newWall.transform.SetParent(anchor.transform);
 				newWall.transform.position = GetPosition(coordinates[i], coordinates[(i + 1) % coordinatesNb],j, newWallSize, wallsNb, internDecalage);
+				newWall.transform.eulerAngles = new Vector3(newWall.transform.eulerAngles.x, newWall.transform.eulerAngles.y + rotation, newWall.transform.eulerAngles.z);
+			}
+		}
+	}
+
+	private void CreateWall(List<Vector3> coordinates, GameObject wall, string name, GameObject parent, Vector3 decalage)
+	{
+		int coordinatesNb = coordinates.Count;
+
+		for (int i = 0; i < coordinatesNb-1; i++)
+		{
+			float distance = Vector3.Distance(coordinates[i], coordinates[(i + 1) % coordinatesNb]);
+			float rotation = GetAngle(coordinates[i], coordinates[(i + 1) % coordinatesNb]);
+			int wallsNb = 1;
+
+			GameObject anchor = new GameObject(name + i); //container
+			anchor.transform.SetParent(parent.transform);
+
+			for (int j = 0; j < wallsNb; j++)
+			{
+				GameObject newWall = GameObject.Instantiate(wall); // instantiate a wall in the list randomly
+				Vector3 newWallSize = ScaleWall(newWall, wallsNb, distance);
+				newWall.transform.SetParent(anchor.transform);
+				newWall.transform.position = GetPosition(coordinates[i], coordinates[(i + 1) % coordinatesNb], j, newWallSize, wallsNb, false) + decalage;
 				newWall.transform.eulerAngles = new Vector3(newWall.transform.eulerAngles.x, newWall.transform.eulerAngles.y + rotation, newWall.transform.eulerAngles.z);
 			}
 		}

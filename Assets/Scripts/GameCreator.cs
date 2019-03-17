@@ -14,7 +14,7 @@ public class GameCreator : MonoBehaviour
 
 	public void StartGame()
 	{
-		UDPClient.instance.server.Connect();
+		UDPClient.instance.ConnectServer();
 		SceneManager.LoadScene(nextSceneName);
 	}
 }

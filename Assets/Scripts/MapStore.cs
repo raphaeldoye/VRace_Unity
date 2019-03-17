@@ -53,5 +53,6 @@ public class Map
 	public List<GameObject> internalWalls;
 	[Header("start Line settings")]
 	public List<GameObject> startLine_Floor;
-
+	public GameObject startLineTrigger;
+	public GameObject startLineSecondTrigger;
 }
