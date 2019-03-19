@@ -10,10 +10,11 @@ public class GhostController : MonoBehaviour
 	public enum SporadicFilter { None, AutomateTreshold, ManualTreshold};
 	public enum SelectedValueFilter { LastValue, Mean, Mode, Median}
 
-	//VehicleTransforms vTransforms;
-	VehicleTransform vTransform;
+	GhostTransforms vTransforms;
+	GhostTransform vTransform;
 	string path = "Assets/Resources/vehicleTransforms.txt";
 	private bool locked = true;
+	private bool enable = true;
 	public Vector3 decalage = Vector3.zero;
 	[Header("developper settings")]
 	[Space(10)]
@@ -31,12 +32,21 @@ public class GhostController : MonoBehaviour
 	void Start()
     {
 		gameObject.SetActive(false);
-		//vTransforms = JsonUtility.FromJson<VehicleTransforms>(GameManager.instance.GetTextFromFile(path));
-    }
+		vTransforms = JsonUtility.FromJson<GhostTransforms>(GameManager.instance.GetTextFromFile(path));
+		if (vTransforms == null)
+		{
+			GameManager.instance.SetRecordTime(GameManager.DEFAULT_RECORD_TIME);
+			enable = false;
+		}
+		else
+		{
+			GameManager.instance.SetRecordTime(vTransforms.time);
+		}
+	}
 
 	private void FixedUpdate()
 	{
-		if (!locked)
+		if (!locked && enable)
 		{
 			SetCarPosition();
 		}
@@ -109,7 +119,7 @@ public class GhostController : MonoBehaviour
 	{
 		for (int i = 0; i < iteration; i++)
 		{
-			/*if (!vTransforms.Empty())
+			if (!vTransforms.Empty())
 			{
 				vTransform = vTransforms.Dequeue();
 				pos.Add(vTransform.position);
@@ -118,7 +128,7 @@ public class GhostController : MonoBehaviour
 			else
 			{
 				return false;
-			}*/
+			}
 		}
 
 		return true;

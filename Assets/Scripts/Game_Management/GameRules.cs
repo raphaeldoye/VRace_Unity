@@ -6,6 +6,7 @@ public class GameRules : MonoBehaviour
 {
 	public static GameRules instance = null;
 	[SerializeField] private int maxLap = 3;
+	public string creationGameMenu = "CreationGameMenu";
 
 	public enum MapsList
 	{

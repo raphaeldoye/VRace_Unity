@@ -5,11 +5,12 @@ using System.IO;
 
 public class MovementRecorder : MonoBehaviour
 {
-//	VehicleTransforms transforms;
+	GhostTransforms transforms;
 	bool savedOnce = false;
 	public string path = "Assets/Resources/vehicleTransforms.txt";
 	bool record = false;
 	public Transform trackerTransform;
+	public bool FindPlayer = true;
 	[Header("Developper settings")]
 	public bool addNoise = false;
 	public int savedDataPerFrame = 1;
@@ -17,15 +18,20 @@ public class MovementRecorder : MonoBehaviour
 
 
 	void Start()
-    {
-	//	transforms = new VehicleTransforms();
+	{
+		transforms = new GhostTransforms();
 		Directory.CreateDirectory(Path.GetDirectoryName(path));
 		rnd = new System.Random();
+
+		if (FindPlayer)
+		{
+			trackerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+		}
 	}
 
 	private void Update()
 	{
-		if(Input.GetButtonDown("Save") && !savedOnce)
+		if (Input.GetButtonDown("Save") && !savedOnce)
 		{
 			SaveMovements();
 			savedOnce = true;
@@ -48,13 +54,13 @@ public class MovementRecorder : MonoBehaviour
 	}
 
 	void AddCarPosition(Vector3 pos, Vector3 rot)
-	{	
-	/*	VehicleTransform v = new VehicleTransform
+	{
+		GhostTransform v = new GhostTransform
 		{
 			position = pos,
 			rotation = rot
 		};
-		transforms.Push(v);*/
+		transforms.Push(v);
 	}
 
 	void AddCarPositionWithNoise(Vector3 pos, Vector3 rot)
@@ -74,13 +80,13 @@ public class MovementRecorder : MonoBehaviour
 			}
 			else
 			{
-				AddCarPosition(pos,new Vector3(0, rot.y, 0));
+				AddCarPosition(pos, new Vector3(0, rot.y, 0));
 			}
-			
+
 		}
 	}
 
-Vector3 AddNoise(Vector3 value, int maxNoise)
+	Vector3 AddNoise(Vector3 value, int maxNoise)
 	{
 		float x = value.x;
 		float y = value.y;
@@ -88,7 +94,7 @@ Vector3 AddNoise(Vector3 value, int maxNoise)
 
 		if (x > 1)
 		{
-			if(rnd.Next(2) == 1)
+			if (rnd.Next(2) == 1)
 				x += (float)rnd.NextDouble() * maxNoise;
 			else
 				x -= (float)rnd.NextDouble() * maxNoise;
@@ -113,8 +119,8 @@ Vector3 AddNoise(Vector3 value, int maxNoise)
 
 	void SaveMovements()
 	{
-		/*string sTransforms = JsonUtility.ToJson(transforms, true);
-		WriteToFile(sTransforms);*/
+		string sTransforms = JsonUtility.ToJson(transforms, true);
+		WriteToFile(sTransforms);
 	}
 
 	void WriteToFile(string jsonText)
@@ -127,10 +133,15 @@ Vector3 AddNoise(Vector3 value, int maxNoise)
 		record = true;
 	}
 
-	public void StoptRecording()
+	public void StopRecording(float time = 0)
 	{
 		record = false;
-		SaveMovements();
+		if (time > 0)
+		{
+			transforms.time = time;
+			SaveMovements();
+		}
+		transforms.Clear();
 		savedOnce = true;
 	}
 }

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private CarManager myCar;
 	[SerializeField] private GhostController ghostCar;
 	[SerializeField] private MovementRecorder recorder;
+	[SerializeField] private Animation endRaceAnimation;
 	public int countdownTime = 3;
 	public int currentLap = 0;
 	[Header("UI settings")]
@@ -18,13 +21,20 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private Text countdownText;
 	[SerializeField] private Text currentLapText;
 	[SerializeField] private Text maxLapText;
+	[SerializeField] private Text recordTimeText;
+	[SerializeField] private Text EndGameText;
+	[SerializeField] private Text EndGameRecordText;
+	[SerializeField] private CanvasGroup blackScreen;
 
+	public const float DEFAULT_RECORD_TIME = 999999f;
 
 
 	private float carPauseSpeed;
 	private bool paused = false;
 	private bool started = false;
 	private int lapIncrementValidator = 0;
+	private float recordTime = DEFAULT_RECORD_TIME;
+	private bool EndGameOnce = false;
 
 	//TEST
 	[Header("Developer Settings")]
@@ -61,6 +71,16 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	public void SetRecordTime (float time)
+	{
+		recordTime = time;
+		if (time == DEFAULT_RECORD_TIME)
+			recordTimeText.text = "Record: --.--";
+		else
+			recordTimeText.text = "Record: " + time.ToString("00.00");
+
+	}
+
 	public void StartRace()
 	{
 		ShowLoadingScreen();
@@ -73,8 +93,67 @@ public class GameManager : MonoBehaviour
 
 	void VerifyEndGame()
 	{
+		if (!EndGameOnce)
+		{
+			bool win = false;
+			if (currentLap > GameRules.instance.GetMaxLap())
+			{
+				EndGameOnce = true;
+				timer.instance.StopTimer();
+				if (timer.instance.GetTime() < recordTime)
+				{
+					recorder.StopRecording(timer.instance.GetTime());
+					win = true;
+				}
+				else
+				{
+					recorder.StopRecording();
+				}
 
-		recorder.StoptRecording();
+				currentLapText.text = GameRules.instance.GetMaxLap().ToString();
+				StartCoroutine(EndGame(win));
+			}
+			else
+			{
+				currentLapText.text = currentLap.ToString();
+			}
+		}
+	}
+
+	IEnumerator EndGame(bool win)
+	{
+		//Play camera animation
+		endRaceAnimation.Play();
+		yield return new WaitForSeconds(1.5f);
+		// display end game text
+		if (win)
+		{
+			EndGameText.text = "New Record";
+			EndGameRecordText.text = timer.instance.GetTime().ToString("00.00");
+		}
+		else
+		{
+			EndGameText.text = "Game Over";
+		}
+
+		while (endRaceAnimation.isPlaying)
+		{
+			yield return null;
+		}
+		yield return new WaitForSeconds(1f);
+
+		//BlackScreen Fade
+		float fadeDuration = 2f;
+		while (blackScreen.alpha < 1)
+		{
+			blackScreen.alpha += Time.deltaTime / fadeDuration;
+			yield return null;
+		}
+		//Lock car movement and stop vehicle
+		myCar.LockMovement();
+		/*IRacerController.instance.SetSpeed(0);
+		IRacerController.instance.SendValues();*/
+		SceneManager.LoadScene(GameRules.instance.creationGameMenu);
 	}
 
 	void BuildWalls()
@@ -132,11 +211,12 @@ public class GameManager : MonoBehaviour
 	{
 		if (!paused && started)
 		{
-			//Time.timeScale = 0;
+			myCar.LockMovement();
+			ghostCar.LockMovement();
 			timer.instance.StopTimer();
-			//carPauseSpeed = IRacer.instance.GetSpeed();
+			//carPauseSpeed = IRacerController.instance.GetSpeed();
 			//IRacerController.instance.SetSpeed(0);
-			//IRacer.SendValues();
+			//IRacerController.instance.SendValues();
 			ShowPauseMenu(true);
 			paused = true;
 		}		
@@ -146,9 +226,10 @@ public class GameManager : MonoBehaviour
 	{
 		if (paused && started)
 		{
+			myCar.UnlockMovement();
+			ghostCar.UnlockMovement();
 			//IRacerController.instance.SetSpeed(carPauseSpeed);
-			//IRacer.SendValues();
-			//Time.timeScale = 1;
+			//IRacerController.instance.SendValues();
 			timer.instance.StartTimer();
 			ShowPauseMenu(false);
 			paused = false;
@@ -194,23 +275,25 @@ public class GameManager : MonoBehaviour
 			lapIncrementValidator -= increment;
 		}
 
-		currentLapText.text = currentLap.ToString();
+		VerifyEndGame();
 	}
 
 	public string GetTextFromFile(string path)
 	{
 		StreamReader reader = null;
 		string text = "";
-
 		try
 		{
-			reader = new StreamReader(path);
-			text = reader.ReadToEnd();
-			reader.Close();
+			if (File.Exists(path))
+			{ 
+				reader = new StreamReader(path);
+				text = reader.ReadToEnd();
+				reader.Close();
+			}
 		}
-		catch (System.Exception)
+		catch (NullReferenceException e)
 		{
-			// nothing to do for now;
+			Debug.Log(e);
 		}
 
 		return text;
