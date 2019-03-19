@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4977148068703155848}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -521.2129, y: -1.1712494, z: -900.8325}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -56,9 +56,18 @@ MonoBehaviour:
     - {fileID: 1277524240577792944, guid: 8d4e0d2c18b8c3944a492bb4900d07f3, type: 3}
     startLine_Floor:
     - {fileID: 4430317769189414344, guid: bd41bec8643f6b14eb5d5f4d10535d12, type: 3}
+    startLineTrigger: {fileID: 6353903983035670644, guid: 09d1ff4e48659f846bdda8f91173bf13,
+      type: 3}
+    startLineSecondTrigger: {fileID: 1666522522448078087, guid: 33e38596fce06d2468ea13699fd6533f,
+      type: 3}
   iceLandMap:
     groundMaterial: {fileID: 2100000, guid: 0349a2d87a784904cb7a5ad6d4a65c2b, type: 2}
     externalWalls: []
     additionalWalls: 0
     internalWalls: []
     startLine_Floor: []
+    startLineTrigger: {fileID: 0}
+    startLineSecondTrigger: {fileID: 0}
+  uiPanel: {fileID: 0}
+  uiWall: {fileID: 0}
+  uiStartLine: {fileID: 0}

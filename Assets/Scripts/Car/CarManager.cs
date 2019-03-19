@@ -11,7 +11,6 @@ public class CarManager : MonoBehaviour
 
 
 	public float speed;
-	public bool simulation = false;
 	private CarController car;
 	private Rigidbody carRigidBody;
 	private bool locked = true;
@@ -24,7 +23,7 @@ public class CarManager : MonoBehaviour
 		//get engine audio source
 		EngineSound = GetComponent<AudioSource>();
 
-		if (simulation)
+		if (GameRules.instance.carSimulation)
 			car = virtualCar;
 		else
 			car = realCar;

@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda7280e9d33cab44b0cdfabad7942f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverOn: 1
+  serverOn: 0
   ipAddress: 127.0.0.1
   port: 53000

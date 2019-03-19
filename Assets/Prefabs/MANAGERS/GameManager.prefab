@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4781683423748038764}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,10 +47,12 @@ MonoBehaviour:
   ghostCar: {fileID: 0}
   recorder: {fileID: 0}
   countdownTime: 3
+  currentLap: 0
   pauseMenu: {fileID: 0}
   loadingScreen: {fileID: 0}
   countdownText: {fileID: 0}
-  currentLap: 0
+  currentLapText: {fileID: 0}
+  maxLapText: {fileID: 0}
   mapTestMode: 1
   externalWallsFilePath: Assets\Resources\externalWalls.txt
   internalWallsFilePath: Assets\Resources\internalWalls.txt

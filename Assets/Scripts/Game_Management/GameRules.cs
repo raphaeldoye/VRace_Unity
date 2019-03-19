@@ -11,8 +11,13 @@ public class GameRules : MonoBehaviour
 	{
 		container, iceland
 	}
-
 	public MapsList selectedMap = MapsList.container;
+
+
+	[Header("Developper settings")]
+	public bool dynamicMapCreation = true;
+	public bool simulateServer = false;
+	public bool carSimulation = false;
 
 	void Awake()
 	{

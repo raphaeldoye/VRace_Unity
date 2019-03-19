@@ -588,9 +588,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7485367682161822421}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c044e9f07ec987241a7869daf45a2062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   decalage: {x: 0, y: 11.85, z: 0}
+  readDataPerFrame: 5
+  filter_SporadicNoise: 2
+  filter_selectedValue: 1
+  manualTreshold: 0.6
+  sporadicSigmaMultiplier: 0.05
+  averageAlpha: 0.5
