@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
 		myCar.LockMovement();
 		/*IRacerController.instance.SetSpeed(0);
 		IRacerController.instance.SendValues();*/
-		SceneManager.LoadScene(GameRules.instance.creationGameMenu);
+		QuitGame();
 	}
 
 	void BuildWalls()
@@ -236,6 +236,12 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	public void QuitGame ()
+	{
+		UDPClient.instance.StopGame();
+		SceneManager.LoadScene(GameRules.instance.creationGameMenu);
+	}
+
 	void ShowPauseMenu(bool show)
 	{
 		if (show)
@@ -247,11 +253,6 @@ public class GameManager : MonoBehaviour
 			pauseMenu.GetComponent<CanvasGroup>().alpha = 0;
 		}
 		
-	}
-
-	public void QuitGame()
-	{
-
 	}
 
 	public void SetNewLap(int increment)

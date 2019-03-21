@@ -44,6 +44,14 @@ public class UDPClient : MonoBehaviour
 		}
 	}
 
+	public void StopGame()
+	{
+		if(!simulation)
+		{
+			server.EndGame();
+		}
+	}
+
 	public string GetExternalWalls()
 	{
 		if (!simulation)
