@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 1688197184981555333}
   - component: {fileID: 1688197184980421765}
   - component: {fileID: 1688197184976331173}
+  - component: {fileID: 1028455149}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -155,7 +156,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1688197184973546373}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 5.06, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 21.565657, y: -45.37292, z: 0}
 --- !u!20 &1688197184974044549
 Camera:
   m_ObjectHideFlags: 0
@@ -222,3 +223,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688197184973848487}
   m_Enabled: 1
+--- !u!111 &1028455149
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688197184973848487}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 688d63ebe5cfc9949b132b55291618f5, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 688d63ebe5cfc9949b132b55291618f5, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0

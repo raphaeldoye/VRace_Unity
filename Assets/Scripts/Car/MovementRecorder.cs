@@ -7,7 +7,8 @@ public class MovementRecorder : MonoBehaviour
 {
 	GhostTransforms transforms;
 	bool savedOnce = false;
-	public string path = "Assets/Resources/vehicleTransforms.txt";
+	public string path = "Assets/Resources/vehicleTransforms";
+	public string extension = ".txt";
 	bool record = false;
 	public Transform trackerTransform;
 	public bool FindPlayer = true;
@@ -20,7 +21,7 @@ public class MovementRecorder : MonoBehaviour
 	void Start()
 	{
 		transforms = new GhostTransforms();
-		Directory.CreateDirectory(Path.GetDirectoryName(path));
+		Directory.CreateDirectory(Path.GetDirectoryName(GetFullPath()));
 		rnd = new System.Random();
 
 		if (FindPlayer)
@@ -51,6 +52,11 @@ public class MovementRecorder : MonoBehaviour
 				AddCarPosition(trackerTransform.position, trackerTransform.eulerAngles);
 			}
 		}
+	}
+
+	private string GetFullPath()
+	{
+		return path + GameRules.instance.GetMaxLap().ToString() + extension;
 	}
 
 	void AddCarPosition(Vector3 pos, Vector3 rot)
@@ -125,7 +131,7 @@ public class MovementRecorder : MonoBehaviour
 
 	void WriteToFile(string jsonText)
 	{
-		File.WriteAllText(path, jsonText);
+		File.WriteAllText(GetFullPath(), jsonText);
 	}
 
 	public void StartRecording()

@@ -12,7 +12,8 @@ public class GhostController : MonoBehaviour
 
 	GhostTransforms vTransforms;
 	GhostTransform vTransform;
-	string path = "Assets/Resources/vehicleTransforms.txt";
+	public string path = "Assets/Resources/vehicleTransforms";
+	public string extension = ".txt";
 	private bool locked = true;
 	private bool enable = true;
 	public Vector3 decalage = Vector3.zero;
@@ -32,7 +33,7 @@ public class GhostController : MonoBehaviour
 	void Start()
     {
 		gameObject.SetActive(false);
-		vTransforms = JsonUtility.FromJson<GhostTransforms>(GameManager.instance.GetTextFromFile(path));
+		vTransforms = JsonUtility.FromJson<GhostTransforms>(GameManager.instance.GetTextFromFile(GetFullPath()));
 		if (vTransforms == null)
 		{
 			GameManager.instance.SetRecordTime(GameManager.DEFAULT_RECORD_TIME);
@@ -50,6 +51,11 @@ public class GhostController : MonoBehaviour
 		{
 			SetCarPosition();
 		}
+	}
+
+	private string GetFullPath()
+	{
+		return path + GameRules.instance.GetMaxLap().ToString() + extension;
 	}
 
 	private void SetCarPosition()

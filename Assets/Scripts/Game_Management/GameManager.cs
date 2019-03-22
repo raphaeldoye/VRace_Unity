@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 	public int countdownTime = 3;
 	public int currentLap = 0;
 	[Header("UI settings")]
-	[SerializeField] private Canvas pauseMenu;
+	[SerializeField] private CanvasGroup pauseMenu;
 	[SerializeField] private Canvas loadingScreen;
 	[SerializeField] private Text countdownText;
 	[SerializeField] private Text currentLapText;
@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		maxLapText.text = "/" + GameRules.instance.GetMaxLap().ToString();
+		ShowPauseMenu(false);
 		StartRace();
 	}
 
@@ -244,15 +245,9 @@ public class GameManager : MonoBehaviour
 
 	void ShowPauseMenu(bool show)
 	{
-		if (show)
-		{
-			pauseMenu.GetComponent<CanvasGroup>().alpha = 1;
-		}
-		else
-		{
-			pauseMenu.GetComponent<CanvasGroup>().alpha = 0;
-		}
-		
+		pauseMenu.alpha = show ? 1 : 0;
+		pauseMenu.interactable = show;
+		pauseMenu.blocksRaycasts = show;
 	}
 
 	public void SetNewLap(int increment)

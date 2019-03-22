@@ -10,10 +10,15 @@ public class GameRules : MonoBehaviour
 
 	public enum MapsList
 	{
-		container, iceland
+		container, city, iceland
 	}
 	public MapsList selectedMap = MapsList.container;
 
+	public enum CarsList
+	{
+		lambo, mustang, corvette
+	}
+	public CarsList selectedCar = CarsList.lambo;
 
 	[Header("Developper settings")]
 	public bool dynamicMapCreation = true;
@@ -31,8 +36,31 @@ public class GameRules : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 	}
 
+	public void Start()
+	{
+		if (PlayerPrefs.HasKey("selectedCar"))
+		{
+			selectedCar = (CarsList)PlayerPrefs.GetInt("selectedCar");
+		}
+
+		if (PlayerPrefs.HasKey("selectedMap"))
+		{
+			selectedMap = (MapsList)PlayerPrefs.GetInt("selectedMap");
+		}
+
+		if (PlayerPrefs.HasKey("lapsNumber"))
+		{
+			maxLap = PlayerPrefs.GetInt("lapsNumber");
+		}
+	}
+
 	public int GetMaxLap()
 	{
 		return maxLap;
+	}
+
+	public void SetMaxLap(int lap)
+	{
+		maxLap = lap;
 	}
 }

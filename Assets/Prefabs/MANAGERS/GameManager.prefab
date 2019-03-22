@@ -46,6 +46,7 @@ MonoBehaviour:
   myCar: {fileID: 0}
   ghostCar: {fileID: 0}
   recorder: {fileID: 0}
+  endRaceAnimation: {fileID: 0}
   countdownTime: 3
   currentLap: 0
   pauseMenu: {fileID: 0}
@@ -53,7 +54,10 @@ MonoBehaviour:
   countdownText: {fileID: 0}
   currentLapText: {fileID: 0}
   maxLapText: {fileID: 0}
-  mapTestMode: 1
+  recordTimeText: {fileID: 0}
+  EndGameText: {fileID: 0}
+  EndGameRecordText: {fileID: 0}
+  blackScreen: {fileID: 0}
   externalWallsFilePath: Assets\Resources\externalWalls.txt
   internalWallsFilePath: Assets\Resources\internalWalls.txt
   startLineFilePath: Assets\Resources\startLine.txt

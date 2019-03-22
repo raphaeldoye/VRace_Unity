@@ -14,6 +14,7 @@ public class GameCreator : MonoBehaviour
 
 	public void StartGame()
 	{
+		int test = GameRules.instance.GetMaxLap();
 		UDPClient.instance.ConnectServer();
 		SceneManager.LoadScene(nextSceneName);
 	}
