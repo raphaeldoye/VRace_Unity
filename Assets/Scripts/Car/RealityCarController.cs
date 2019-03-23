@@ -1,25 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class RealityCarController : CarController
 {
-	[SerializeField] [Range(0f,1f)] protected float speedMultiplier;
+    class MyExternalLib
+    {
+        [DllImport("MyLibrary.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int InitComm(int number);
 
-	private void Start()
+        [DllImport("MyLibrary.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool Disconnect();
+
+        [DllImport("MyLibrary.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void Move(float accel, float angle, bool brake);
+    }
+
+    const int PORT = 3;
+
+    [SerializeField] [Range(0f,1f)] protected float speedMultiplier;
+
+    private void Start()
 	{
-		///TODO
-		/// Set maxSpeed to the maximum value sent to the car (only for the speed)
-		maxSpeed = 16;
+        var numb = MyExternalLib.InitComm(PORT);
+        ///TODO
+        /// Set maxSpeed to the maximum value sent to the car (only for the speed)
+        maxSpeed = 16;
 	}
 
 	public override void CarControl()
 	{
-		///TODO
-		///set the logic of the car control
-	}
+        float torqueIntensity = Input.GetAxis("Vertical");
+        float steeringIntensity = Input.GetAxis("Horizontal");
 
-	public override float GetCurrentSpeed()
+        MyExternalLib.Move(torqueIntensity, steeringIntensity, false);
+
+
+        ///TODO
+        ///set the logic of the car control
+    }
+
+    public override float GetCurrentSpeed()
 	{
 		return 0.0f;
 		///TODO
