@@ -14,7 +14,7 @@ public class RealityCarController : CarController
         public static extern bool Disconnect();
 
         [DllImport("MyLibrary.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Move(float accel, float angle, bool brake);
+        public static extern float Move(float accel, float angle, bool brake);
     }
 
     const int PORT = 3;
@@ -31,11 +31,33 @@ public class RealityCarController : CarController
 
 	public override void CarControl()
 	{
+        if (Input.GetButtonDown("CloseDLL"))
+        {
+            MyExternalLib.Disconnect();
+        }
+
+
         float torqueIntensity = Input.GetAxis("Vertical");
         float steeringIntensity = Input.GetAxis("Horizontal");
 
-        MyExternalLib.Move(torqueIntensity, steeringIntensity, false);
 
+        if(steeringIntensity < -0.5f)
+        {
+            steeringIntensity = -1f;
+        }
+        else if (steeringIntensity > 0.5f)
+        {
+            steeringIntensity = 1f;
+        }
+        else
+        {
+            steeringIntensity = 0f;
+        }
+
+
+        var a = MyExternalLib.Move(torqueIntensity, steeringIntensity, false);
+
+        Debug.Log(steeringIntensity);
 
         ///TODO
         ///set the logic of the car control
