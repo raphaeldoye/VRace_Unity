@@ -126,22 +126,21 @@ namespace Client.Communication
             return startLine;
         }
 
-        public static string GetPosition()
+        public static void StartGameStream()
         {
             byte[] data = new byte[1024];
             data = Encoding.ASCII.GetBytes("Position");
 
             //SENDING
             udpClient.Send(data, data.Length);
+        }
 
+        public static string GetPosition()
+        {
             //RECEIVING
             var receivedData = udpClient.Receive(ref server);
 
-            var position = Encoding.Default.GetString(receivedData);
-
-            Console.WriteLine(position);
-
-            return position;
+            return Encoding.Default.GetString(receivedData);
         }
 
         public void StartGame()
@@ -151,11 +150,17 @@ namespace Client.Communication
 
         public void EndGame()
         {
+            byte[] data = new byte[1024];
+            data = Encoding.ASCII.GetBytes("EndGame");
+
+            //SENDING
+            udpClient.Send(data, data.Length);
             thread.Join();
         }
 
         private static void GameStream()
         {
+            StartGameStream();
 			while (true)
 			{			
 				VehicleTransforms.Push(GetPosition());
