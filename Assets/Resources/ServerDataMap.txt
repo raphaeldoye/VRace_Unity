@@ -1,0 +1,10 @@
+{
+    "magicScaleNumber": 1.0099999904632569,
+    "externalWalls": {
+        "coordinates": []
+    },
+    "internalWalls": [],
+    "startingLine": {
+        "coordinates": []
+    }
+}

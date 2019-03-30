@@ -7,15 +7,88 @@ using UnityEngine.SceneManagement;
 public class GameCreator : MonoBehaviour
 {
 	public string nextSceneName = "RaceMap";
+	public string previousSceneName = "MainMenu";
+	public float minimumLoadingDuration = 3f;
+	[SerializeField] private MenuManager menuManager;
+
+	private void Start()
+	{
+		CreateGame();
+	}
+
+	public IEnumerator ShowCarLoading()
+	{
+		menuManager.OpenLoading("Connecting to RC car...");
+		float initialTime = Time.time;
+		yield return null;
+		if (GameRules.instance.carSimulation)
+		{
+			yield return new WaitForSeconds(minimumLoadingDuration);
+			menuManager.OpenGameMenu();
+		}
+		else
+		{
+			if (IRacerController.instance.Connect())
+			{
+				float waiting = minimumLoadingDuration - (Time.time - initialTime);
+				waiting = waiting < 0 ? 0 : waiting;
+				yield return new WaitForSeconds(waiting);
+				menuManager.OpenGameMenu();
+			}
+			else
+			{
+				float waiting = minimumLoadingDuration - (Time.time - initialTime);
+				waiting = waiting < 0 ? 0 : waiting;
+				yield return new WaitForSeconds(waiting);
+				menuManager.OpenRetryLoading();
+			}
+		}
+	}
+
+	public IEnumerator ShowServerLoading()
+	{
+		menuManager.OpenLoading("Connecting to Server...");
+		float initialTime = Time.time;
+		yield return null;
+
+		if (UDPClient.instance.ConnectServer())
+		{
+			float waiting = minimumLoadingDuration - (Time.time - initialTime);
+			waiting = waiting < 0 ? 0 : waiting;
+			yield return new WaitForSeconds(waiting);
+			SceneManager.LoadScene(nextSceneName);
+		}
+		else
+		{
+			float waiting = minimumLoadingDuration - (Time.time - initialTime);
+			waiting = waiting < 0 ? 0 : waiting;
+			yield return new WaitForSeconds(waiting);
+			menuManager.OpenServerRetryLoading();
+		}
+	}
+
 	public void CreateGame()
 	{
-		//IRacerController.instance.Connect();
+		menuManager.OpenPortSelection();
+	}
+
+	public void ConnectCar()
+	{
+		StartCoroutine(ShowCarLoading());
+	}
+
+	public void QuitGame()
+	{
+		SceneManager.LoadScene(previousSceneName);
 	}
 
 	public void StartGame()
 	{
-		int test = GameRules.instance.GetMaxLap();
-		UDPClient.instance.ConnectServer();
-		SceneManager.LoadScene(nextSceneName);
+		StartCoroutine(ShowServerLoading());
+	}
+
+	public void ReturnToGameMenu()
+	{
+		menuManager.OpenGameMenu();
 	}
 }

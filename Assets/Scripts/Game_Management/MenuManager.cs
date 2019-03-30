@@ -27,9 +27,17 @@ public class MenuManager : MonoBehaviour
 	[SerializeField] private Slider lapsSlider;
 	[SerializeField] private Button optionSubmit;
 
+	[Header("LOADING")]
+	[SerializeField] private CanvasGroup portSelection;
+	[SerializeField] private CanvasGroup loading;
+	[SerializeField] private Text loadingText;
+	[SerializeField] private CanvasGroup retryLoading;
+	[SerializeField] private CanvasGroup serverRetryLoading;
+
+
 	private void Start()
 	{
-		OpenGameMenu();
+		DeactivateAll();
 	}
 
 	public void SetCanvasState(CanvasGroup cg, bool state)
@@ -45,6 +53,9 @@ public class MenuManager : MonoBehaviour
 		SetCanvasState(carCanvas.GetComponent<CanvasGroup>(), false);
 		SetCanvasState(mapCanvas.GetComponent<CanvasGroup>(), false);
 		SetCanvasState(optionCanvas.GetComponent<CanvasGroup>(), false);
+		SetCanvasState(loading, false);
+		SetCanvasState(retryLoading, false);
+		SetCanvasState(portSelection, false);
 
 		carsSubmit.enabled = false;
 		mapsSubmit.enabled = false;
@@ -66,7 +77,32 @@ public class MenuManager : MonoBehaviour
 		}
 	}
 
-    public void OpenCarsMenu()
+	public void OpenPortSelection()
+	{
+		DeactivateAll();
+		SetCanvasState(portSelection, true);
+	}
+
+	public void OpenLoading(string text)
+	{
+		DeactivateAll();
+		SetCanvasState(loading, true);
+		loadingText.text = text;
+	}
+
+	public void OpenRetryLoading()
+	{
+		DeactivateAll();
+		SetCanvasState(retryLoading, true);
+	}
+
+	public void OpenServerRetryLoading()
+	{
+		DeactivateAll();
+		SetCanvasState(serverRetryLoading, true);
+	}
+
+	public void OpenCarsMenu()
 	{
 		DeactivateAll();
 		SetCanvasState(carCanvas.GetComponent<CanvasGroup>(), true);

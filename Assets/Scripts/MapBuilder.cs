@@ -11,7 +11,7 @@ public class MapBuilder
 	public float magicScaleNumber = 1.01f;
 	public Wall externalWalls;
 	public List<Wall> internalWalls;
-	public Wall startLine;
+	public Wall startingLine;
 	static System.Random rnd;
 
 	private GameObject map;
@@ -20,7 +20,7 @@ public class MapBuilder
 	{
 		externalWalls = new Wall();
 		internalWalls = new List<Wall>();
-		startLine = new Wall();
+		startingLine = new Wall();
 		rnd = new System.Random();
 	}
 
@@ -63,11 +63,11 @@ public class MapBuilder
 		GameObject triggerObject = MapStore.instance.GetSelectedMap().startLineTrigger;
 		GameObject secondTriggerObject = MapStore.instance.GetSelectedMap().startLineSecondTrigger;
 
-		CreateWall(startLine.coordinates, startLineObjects, "startLine", line, 0);
-		CreateWall(startLine.coordinates, triggerObject, "trigger1", triggers, Vector3.zero);
+		CreateWall(startingLine.coordinates, startLineObjects, "startLine", line, 0);
+		CreateWall(startingLine.coordinates, triggerObject, "trigger1", triggers, Vector3.zero);
 
-		Vector3 decalageVector = decalage * (new Vector3(1f,0,1f) - Vector3.Normalize(startLine.coordinates[1] - startLine.coordinates[0]));
-		CreateWall(startLine.coordinates, secondTriggerObject, "trigger2", triggers, decalageVector);
+		Vector3 decalageVector = decalage * (new Vector3(1f,0,1f) - Vector3.Normalize(startingLine.coordinates[1] - startingLine.coordinates[0]));
+		CreateWall(startingLine.coordinates, secondTriggerObject, "trigger2", triggers, decalageVector);
 	}
 
 	private void CreateInternalWalls()

@@ -1,0 +1,504 @@
+fileFormatVersion: 2
+guid: fbcbc5fc29ed9f1429a49763ef2c6c43
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: ' plasma'
+    100002: Camera01
+    100004: Camera01.Target
+    100006: canonin
+    100008: Cone01
+    100010: core
+    100012: coreout
+    100014: //RootNode
+    100016: det1
+    100018: det2
+    100020: Direct01
+    100022: Direct01.Target
+    100024: discharg
+    100026: dischrge
+    100028: DR eqtrext
+    100030: DR eqtrtrn
+    100032: DR ershaft
+    100034: DR ershaft.copy01
+    100036: DR ershaft.copy02
+    100038: DR ershaft.copy03
+    100040: DR ershaft.copy04
+    100042: DR ershaft.copy05
+    100044: DR ershaft.copy06
+    100046: DR ershaft.copy07
+    100048: DR ershaft.copy08
+    100050: DR ershaft.copy09
+    100052: DR ershaft.copy10
+    100054: DR ershaft.copy11
+    100056: DR ershaft.copy12
+    100058: DR ershaft.copy13
+    100060: DR ershaft.copy14
+    100062: DR ershaft.copy15
+    100064: DR ershaft.copy16
+    100066: DR ershaft.copy17
+    100068: DR ershaft.copy18
+    100070: DR ershaft.copy19
+    100072: DR ershaft.copy20
+    100074: DR ershaft.copy21
+    100076: DR ershaft.copy22
+    100078: DR ershaft.copy23
+    100080: DR ershaft.copy24
+    100082: DR ershaft.copy25
+    100084: DR ershaft.copy26
+    100086: DR ershaft.copy27
+    100088: DR ershaft.copy28
+    100090: DR ershaft.copy29
+    100092: DR ershaft.copy30
+    100094: DR ershaft.copy31
+    100096: DR ershaft.copy32
+    100098: DS2
+    100100: ex2
+    100102: hull
+    100104: int
+    100106: internals
+    100108: main-exhaust
+    100110: Omni reinforce cyan
+    100112: Omni reinforce cyan01
+    100114: Omni reinforce cyan02
+    100116: Omni reinforcements
+    100118: Omni reinforcements shadow
+    100120: Omni reinforcements01
+    100122: Omni reinforcements02
+    100124: Omni reinforcements03
+    100126: Omni reinforcements04
+    100128: Omni reinforcements05
+    100130: Omni reinforcements06
+    100132: Omni reinforcements08
+    100134: omni-01
+    100136: Plane01
+    100138: plate 01
+    100140: plate 02
+    100142: plate 03
+    100144: plate 04
+    100146: plate 05
+    100148: plate 06
+    100150: plate 07
+    100152: plate 08
+    100154: reinforcements01
+    100156: reinforcements02
+    100158: reinforcements03
+    100160: reinforcements04
+    100162: reinforcements05
+    100164: reinforcements06
+    100166: shaft
+    100168: shaftout
+    100170: shift
+    100172: supports
+    100174: Tube01
+    400000: ' plasma'
+    400002: Camera01
+    400004: Camera01.Target
+    400006: canonin
+    400008: Cone01
+    400010: core
+    400012: coreout
+    400014: //RootNode
+    400016: det1
+    400018: det2
+    400020: Direct01
+    400022: Direct01.Target
+    400024: discharg
+    400026: dischrge
+    400028: DR eqtrext
+    400030: DR eqtrtrn
+    400032: DR ershaft
+    400034: DR ershaft.copy01
+    400036: DR ershaft.copy02
+    400038: DR ershaft.copy03
+    400040: DR ershaft.copy04
+    400042: DR ershaft.copy05
+    400044: DR ershaft.copy06
+    400046: DR ershaft.copy07
+    400048: DR ershaft.copy08
+    400050: DR ershaft.copy09
+    400052: DR ershaft.copy10
+    400054: DR ershaft.copy11
+    400056: DR ershaft.copy12
+    400058: DR ershaft.copy13
+    400060: DR ershaft.copy14
+    400062: DR ershaft.copy15
+    400064: DR ershaft.copy16
+    400066: DR ershaft.copy17
+    400068: DR ershaft.copy18
+    400070: DR ershaft.copy19
+    400072: DR ershaft.copy20
+    400074: DR ershaft.copy21
+    400076: DR ershaft.copy22
+    400078: DR ershaft.copy23
+    400080: DR ershaft.copy24
+    400082: DR ershaft.copy25
+    400084: DR ershaft.copy26
+    400086: DR ershaft.copy27
+    400088: DR ershaft.copy28
+    400090: DR ershaft.copy29
+    400092: DR ershaft.copy30
+    400094: DR ershaft.copy31
+    400096: DR ershaft.copy32
+    400098: DS2
+    400100: ex2
+    400102: hull
+    400104: int
+    400106: internals
+    400108: main-exhaust
+    400110: Omni reinforce cyan
+    400112: Omni reinforce cyan01
+    400114: Omni reinforce cyan02
+    400116: Omni reinforcements
+    400118: Omni reinforcements shadow
+    400120: Omni reinforcements01
+    400122: Omni reinforcements02
+    400124: Omni reinforcements03
+    400126: Omni reinforcements04
+    400128: Omni reinforcements05
+    400130: Omni reinforcements06
+    400132: Omni reinforcements08
+    400134: omni-01
+    400136: Plane01
+    400138: plate 01
+    400140: plate 02
+    400142: plate 03
+    400144: plate 04
+    400146: plate 05
+    400148: plate 06
+    400150: plate 07
+    400152: plate 08
+    400154: reinforcements01
+    400156: reinforcements02
+    400158: reinforcements03
+    400160: reinforcements04
+    400162: reinforcements05
+    400164: reinforcements06
+    400166: shaft
+    400168: shaftout
+    400170: shift
+    400172: supports
+    400174: Tube01
+    2000000: Camera01
+    2100000: plate reinforcement
+    2100002: EXHAUST tube
+    2100004: EXHAUST inner tube
+    2100006: reinforce
+    2100008: Default
+    2100010: RED RAILING
+    2100012: WHITE GROW
+    2100014: Laser outter
+    2100016: Laser inner
+    2100018: Laser prstenec
+    2100020: construction reinforce
+    2100022: construction
+    2100024: No Name
+    2300000: ' plasma'
+    2300002: canonin
+    2300004: Cone01
+    2300006: core
+    2300008: coreout
+    2300010: det1
+    2300012: det2
+    2300014: discharg
+    2300016: dischrge
+    2300018: DR eqtrext
+    2300020: DR eqtrtrn
+    2300022: DR ershaft
+    2300024: DR ershaft.copy01
+    2300026: DR ershaft.copy02
+    2300028: DR ershaft.copy03
+    2300030: DR ershaft.copy04
+    2300032: DR ershaft.copy05
+    2300034: DR ershaft.copy06
+    2300036: DR ershaft.copy07
+    2300038: DR ershaft.copy08
+    2300040: DR ershaft.copy09
+    2300042: DR ershaft.copy10
+    2300044: DR ershaft.copy11
+    2300046: DR ershaft.copy12
+    2300048: DR ershaft.copy13
+    2300050: DR ershaft.copy14
+    2300052: DR ershaft.copy15
+    2300054: DR ershaft.copy16
+    2300056: DR ershaft.copy17
+    2300058: DR ershaft.copy18
+    2300060: DR ershaft.copy19
+    2300062: DR ershaft.copy20
+    2300064: DR ershaft.copy21
+    2300066: DR ershaft.copy22
+    2300068: DR ershaft.copy23
+    2300070: DR ershaft.copy24
+    2300072: DR ershaft.copy25
+    2300074: DR ershaft.copy26
+    2300076: DR ershaft.copy27
+    2300078: DR ershaft.copy28
+    2300080: DR ershaft.copy29
+    2300082: DR ershaft.copy30
+    2300084: DR ershaft.copy31
+    2300086: DR ershaft.copy32
+    2300088: DS2
+    2300090: ex2
+    2300092: hull
+    2300094: int
+    2300096: internals
+    2300098: Plane01
+    2300100: plate 01
+    2300102: plate 02
+    2300104: plate 03
+    2300106: plate 04
+    2300108: plate 05
+    2300110: plate 06
+    2300112: plate 07
+    2300114: plate 08
+    2300116: reinforcements01
+    2300118: reinforcements02
+    2300120: reinforcements03
+    2300122: reinforcements04
+    2300124: reinforcements05
+    2300126: reinforcements06
+    2300128: shaft
+    2300130: shaftout
+    2300132: shift
+    2300134: supports
+    2300136: Tube01
+    3300000: ' plasma'
+    3300002: canonin
+    3300004: Cone01
+    3300006: core
+    3300008: coreout
+    3300010: det1
+    3300012: det2
+    3300014: discharg
+    3300016: dischrge
+    3300018: DR eqtrext
+    3300020: DR eqtrtrn
+    3300022: DR ershaft
+    3300024: DR ershaft.copy01
+    3300026: DR ershaft.copy02
+    3300028: DR ershaft.copy03
+    3300030: DR ershaft.copy04
+    3300032: DR ershaft.copy05
+    3300034: DR ershaft.copy06
+    3300036: DR ershaft.copy07
+    3300038: DR ershaft.copy08
+    3300040: DR ershaft.copy09
+    3300042: DR ershaft.copy10
+    3300044: DR ershaft.copy11
+    3300046: DR ershaft.copy12
+    3300048: DR ershaft.copy13
+    3300050: DR ershaft.copy14
+    3300052: DR ershaft.copy15
+    3300054: DR ershaft.copy16
+    3300056: DR ershaft.copy17
+    3300058: DR ershaft.copy18
+    3300060: DR ershaft.copy19
+    3300062: DR ershaft.copy20
+    3300064: DR ershaft.copy21
+    3300066: DR ershaft.copy22
+    3300068: DR ershaft.copy23
+    3300070: DR ershaft.copy24
+    3300072: DR ershaft.copy25
+    3300074: DR ershaft.copy26
+    3300076: DR ershaft.copy27
+    3300078: DR ershaft.copy28
+    3300080: DR ershaft.copy29
+    3300082: DR ershaft.copy30
+    3300084: DR ershaft.copy31
+    3300086: DR ershaft.copy32
+    3300088: DS2
+    3300090: ex2
+    3300092: hull
+    3300094: int
+    3300096: internals
+    3300098: Plane01
+    3300100: plate 01
+    3300102: plate 02
+    3300104: plate 03
+    3300106: plate 04
+    3300108: plate 05
+    3300110: plate 06
+    3300112: plate 07
+    3300114: plate 08
+    3300116: reinforcements01
+    3300118: reinforcements02
+    3300120: reinforcements03
+    3300122: reinforcements04
+    3300124: reinforcements05
+    3300126: reinforcements06
+    3300128: shaft
+    3300130: shaftout
+    3300132: shift
+    3300134: supports
+    3300136: Tube01
+    4300000: plate 01
+    4300002: plate 02
+    4300004: plate 03
+    4300006: plate 04
+    4300008: plate 05
+    4300010: plate 06
+    4300012: plate 07
+    4300014: DR eqtrext
+    4300016: DR eqtrtrn
+    4300018: DR ershaft
+    4300020: DR ershaft.copy01
+    4300022: DR ershaft.copy02
+    4300024: DR ershaft.copy03
+    4300026: DR ershaft.copy04
+    4300028: DR ershaft.copy05
+    4300030: DR ershaft.copy06
+    4300032: DR ershaft.copy07
+    4300034: DR ershaft.copy08
+    4300036: DR ershaft.copy09
+    4300038: DR ershaft.copy10
+    4300040: DR ershaft.copy11
+    4300042: DR ershaft.copy12
+    4300044: DR ershaft.copy13
+    4300046: DR ershaft.copy14
+    4300048: DR ershaft.copy15
+    4300050: DR ershaft.copy16
+    4300052: DR ershaft.copy17
+    4300054: DR ershaft.copy18
+    4300056: DR ershaft.copy19
+    4300058: DR ershaft.copy20
+    4300060: DR ershaft.copy21
+    4300062: DR ershaft.copy22
+    4300064: DR ershaft.copy23
+    4300066: DR ershaft.copy24
+    4300068: DR ershaft.copy25
+    4300070: DR ershaft.copy26
+    4300072: DR ershaft.copy27
+    4300074: DR ershaft.copy28
+    4300076: DR ershaft.copy29
+    4300078: DR ershaft.copy30
+    4300080: DR ershaft.copy31
+    4300082: DR ershaft.copy32
+    4300084: Cone01
+    4300086: shift
+    4300088: canonin
+    4300090: discharg
+    4300092: dischrge
+    4300094: ex2
+    4300096: core
+    4300098: shaft
+    4300100: shaftout
+    4300102: coreout
+    4300104: ' plasma'
+    4300106: det1
+    4300108: hull
+    4300110: supports
+    4300112: reinforcements01
+    4300114: reinforcements02
+    4300116: reinforcements03
+    4300118: reinforcements04
+    4300120: reinforcements05
+    4300122: reinforcements06
+    4300124: Tube01
+    4300126: Plane01
+    4300128: int
+    4300130: internals
+    4300132: plate 08
+    4300134: DS2
+    4300136: det2
+    9500000: //RootNode
+    10800000: Direct01
+    10800002: Omni reinforce cyan
+    10800004: Omni reinforce cyan01
+    10800006: Omni reinforce cyan02
+    10800008: Omni reinforcements
+    10800010: Omni reinforcements shadow
+    10800012: Omni reinforcements01
+    10800014: Omni reinforcements02
+    10800016: Omni reinforcements03
+    10800018: Omni reinforcements04
+    10800020: Omni reinforcements05
+    10800022: Omni reinforcements06
+    10800024: Omni reinforcements08
+    10800026: omni-01
+    6000828045688606266: Camera01
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -11,6 +11,11 @@ public class UDPClient : MonoBehaviour
 	private Server server;
 	private bool simulation;
 
+	private void OnApplicationQuit()
+	{
+		StopGame();
+	}
+
 	private void Awake()
 	{
 		if (instance == null)
@@ -28,12 +33,17 @@ public class UDPClient : MonoBehaviour
 		simulation = GameRules.instance.simulateServer;
 	}
 
-	public void ConnectServer()
+	public bool ConnectServer()
 	{
 		if (!simulation)
 		{
 			server.Connect();
-		}		
+			return true;
+		}	
+		else
+		{
+			return true;
+		}
 	}
 
 	public void StartGame()

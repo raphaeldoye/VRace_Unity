@@ -1,0 +1,448 @@
+fileFormatVersion: 2
+guid: bf3d1eccafa04624184089a3c46b8190
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: ' plasma'
+    100002: Camera01
+    100004: Camera01.target
+    100006: canonin
+    100008: Cone01
+    100010: core
+    100012: coreout
+    100014: //RootNode
+    100016: det1
+    100018: det2
+    100020: Direct01.target
+    100022: discharg
+    100024: dischrge
+    100026: DR eqtrext
+    100028: DR eqtrtrn
+    100030: DR ersha10
+    100032: DR ersha11
+    100034: DR ersha12
+    100036: DR ersha13
+    100038: DR ersha14
+    100040: DR ersha15
+    100042: DR ersha16
+    100044: DR ersha17
+    100046: DR ersha18
+    100048: DR ersha19
+    100050: DR ersha20
+    100052: DR ersha21
+    100054: DR ersha22
+    100056: DR ersha23
+    100058: DR ersha24
+    100060: DR ersha25
+    100062: DR ersha26
+    100064: DR ersha27
+    100066: DR ersha28
+    100068: DR ersha29
+    100070: DR ersha30
+    100072: DR ersha31
+    100074: DR ershaf0
+    100076: DR ershaf1
+    100078: DR ershaf2
+    100080: DR ershaf3
+    100082: DR ershaf4
+    100084: DR ershaf5
+    100086: DR ershaf6
+    100088: DR ershaf7
+    100090: DR ershaf8
+    100092: DR ershaf9
+    100094: DR ershaft
+    100096: DS2
+    100098: ex2
+    100100: hull
+    100102: int
+    100104: internals
+    100106: main-exhau
+    100108: Omni rei10
+    100110: Omni rein0
+    100112: Omni rein1
+    100114: Omni rein2
+    100116: Omni rein3
+    100118: Omni rein4
+    100120: Omni rein5
+    100122: Omni rein6
+    100124: Omni rein7
+    100126: Omni rein8
+    100128: Omni rein9
+    100130: Omni reinf
+    100132: omni-01
+    100134: Plane01
+    100136: plate 01
+    100138: plate 02
+    100140: plate 03
+    100142: plate 04
+    100144: plate 05
+    100146: plate 06
+    100148: plate 07
+    100150: plate 08
+    100152: reinforce0
+    100154: reinforce1
+    100156: reinforce2
+    100158: reinforce3
+    100160: reinforce4
+    100162: reinforcem
+    100164: shaft
+    100166: shaftout
+    100168: shift
+    100170: supports
+    100172: Tube01
+    400000: ' plasma'
+    400002: Camera01
+    400004: Camera01.target
+    400006: canonin
+    400008: Cone01
+    400010: core
+    400012: coreout
+    400014: //RootNode
+    400016: det1
+    400018: det2
+    400020: Direct01.target
+    400022: discharg
+    400024: dischrge
+    400026: DR eqtrext
+    400028: DR eqtrtrn
+    400030: DR ersha10
+    400032: DR ersha11
+    400034: DR ersha12
+    400036: DR ersha13
+    400038: DR ersha14
+    400040: DR ersha15
+    400042: DR ersha16
+    400044: DR ersha17
+    400046: DR ersha18
+    400048: DR ersha19
+    400050: DR ersha20
+    400052: DR ersha21
+    400054: DR ersha22
+    400056: DR ersha23
+    400058: DR ersha24
+    400060: DR ersha25
+    400062: DR ersha26
+    400064: DR ersha27
+    400066: DR ersha28
+    400068: DR ersha29
+    400070: DR ersha30
+    400072: DR ersha31
+    400074: DR ershaf0
+    400076: DR ershaf1
+    400078: DR ershaf2
+    400080: DR ershaf3
+    400082: DR ershaf4
+    400084: DR ershaf5
+    400086: DR ershaf6
+    400088: DR ershaf7
+    400090: DR ershaf8
+    400092: DR ershaf9
+    400094: DR ershaft
+    400096: DS2
+    400098: ex2
+    400100: hull
+    400102: int
+    400104: internals
+    400106: main-exhau
+    400108: Omni rei10
+    400110: Omni rein0
+    400112: Omni rein1
+    400114: Omni rein2
+    400116: Omni rein3
+    400118: Omni rein4
+    400120: Omni rein5
+    400122: Omni rein6
+    400124: Omni rein7
+    400126: Omni rein8
+    400128: Omni rein9
+    400130: Omni reinf
+    400132: omni-01
+    400134: Plane01
+    400136: plate 01
+    400138: plate 02
+    400140: plate 03
+    400142: plate 04
+    400144: plate 05
+    400146: plate 06
+    400148: plate 07
+    400150: plate 08
+    400152: reinforce0
+    400154: reinforce1
+    400156: reinforce2
+    400158: reinforce3
+    400160: reinforce4
+    400162: reinforcem
+    400164: shaft
+    400166: shaftout
+    400168: shift
+    400170: supports
+    400172: Tube01
+    2100000: plate reinforcem
+    2100002: EXHAUST tube
+    2100004: EXHAUST inner tu
+    2100006: reinforce
+    2100008: Default
+    2100010: RED RAILING
+    2100012: WHITE GROW
+    2100014: Laser outter
+    2100016: Laser inner
+    2100018: DEATH STAR HULL
+    2100020: Laser prstenec
+    2100022: construction rei
+    2100024: EXHAUST tube1
+    2100026: construction
+    2300000: ' plasma'
+    2300002: canonin
+    2300004: Cone01
+    2300006: core
+    2300008: coreout
+    2300010: det1
+    2300012: det2
+    2300014: discharg
+    2300016: dischrge
+    2300018: DR eqtrext
+    2300020: DR eqtrtrn
+    2300022: DR ersha10
+    2300024: DR ersha11
+    2300026: DR ersha12
+    2300028: DR ersha13
+    2300030: DR ersha14
+    2300032: DR ersha15
+    2300034: DR ersha16
+    2300036: DR ersha17
+    2300038: DR ersha18
+    2300040: DR ersha19
+    2300042: DR ersha20
+    2300044: DR ersha21
+    2300046: DR ersha22
+    2300048: DR ersha23
+    2300050: DR ersha24
+    2300052: DR ersha25
+    2300054: DR ersha26
+    2300056: DR ersha27
+    2300058: DR ersha28
+    2300060: DR ersha29
+    2300062: DR ersha30
+    2300064: DR ersha31
+    2300066: DR ershaf0
+    2300068: DR ershaf1
+    2300070: DR ershaf2
+    2300072: DR ershaf3
+    2300074: DR ershaf4
+    2300076: DR ershaf5
+    2300078: DR ershaf6
+    2300080: DR ershaf7
+    2300082: DR ershaf8
+    2300084: DR ershaf9
+    2300086: DR ershaft
+    2300088: DS2
+    2300090: ex2
+    2300092: hull
+    2300094: int
+    2300096: internals
+    2300098: Plane01
+    2300100: plate 01
+    2300102: plate 02
+    2300104: plate 03
+    2300106: plate 04
+    2300108: plate 05
+    2300110: plate 06
+    2300112: plate 07
+    2300114: plate 08
+    2300116: reinforce0
+    2300118: reinforce1
+    2300120: reinforce2
+    2300122: reinforce3
+    2300124: reinforce4
+    2300126: reinforcem
+    2300128: shaft
+    2300130: shaftout
+    2300132: shift
+    2300134: supports
+    2300136: Tube01
+    3300000: ' plasma'
+    3300002: canonin
+    3300004: Cone01
+    3300006: core
+    3300008: coreout
+    3300010: det1
+    3300012: det2
+    3300014: discharg
+    3300016: dischrge
+    3300018: DR eqtrext
+    3300020: DR eqtrtrn
+    3300022: DR ersha10
+    3300024: DR ersha11
+    3300026: DR ersha12
+    3300028: DR ersha13
+    3300030: DR ersha14
+    3300032: DR ersha15
+    3300034: DR ersha16
+    3300036: DR ersha17
+    3300038: DR ersha18
+    3300040: DR ersha19
+    3300042: DR ersha20
+    3300044: DR ersha21
+    3300046: DR ersha22
+    3300048: DR ersha23
+    3300050: DR ersha24
+    3300052: DR ersha25
+    3300054: DR ersha26
+    3300056: DR ersha27
+    3300058: DR ersha28
+    3300060: DR ersha29
+    3300062: DR ersha30
+    3300064: DR ersha31
+    3300066: DR ershaf0
+    3300068: DR ershaf1
+    3300070: DR ershaf2
+    3300072: DR ershaf3
+    3300074: DR ershaf4
+    3300076: DR ershaf5
+    3300078: DR ershaf6
+    3300080: DR ershaf7
+    3300082: DR ershaf8
+    3300084: DR ershaf9
+    3300086: DR ershaft
+    3300088: DS2
+    3300090: ex2
+    3300092: hull
+    3300094: int
+    3300096: internals
+    3300098: Plane01
+    3300100: plate 01
+    3300102: plate 02
+    3300104: plate 03
+    3300106: plate 04
+    3300108: plate 05
+    3300110: plate 06
+    3300112: plate 07
+    3300114: plate 08
+    3300116: reinforce0
+    3300118: reinforce1
+    3300120: reinforce2
+    3300122: reinforce3
+    3300124: reinforce4
+    3300126: reinforcem
+    3300128: shaft
+    3300130: shaftout
+    3300132: shift
+    3300134: supports
+    3300136: Tube01
+    4300000: plate 01
+    4300002: plate 02
+    4300004: plate 03
+    4300006: plate 04
+    4300008: plate 05
+    4300010: plate 06
+    4300012: plate 07
+    4300014: DR eqtrext
+    4300016: DR eqtrtrn
+    4300018: DR ershaft
+    4300020: Cone01
+    4300022: shift
+    4300024: canonin
+    4300026: discharg
+    4300028: dischrge
+    4300030: ex2
+    4300032: core
+    4300034: shaft
+    4300036: shaftout
+    4300038: coreout
+    4300040: ' plasma'
+    4300042: det1
+    4300044: hull
+    4300046: supports
+    4300048: Tube01
+    4300050: Plane01
+    4300052: int
+    4300054: internals
+    4300056: plate 08
+    4300058: DS2
+    4300060: det2
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

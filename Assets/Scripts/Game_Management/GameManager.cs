@@ -152,8 +152,8 @@ public class GameManager : MonoBehaviour
 		}
 		//Lock car movement and stop vehicle
 		myCar.LockMovement();
-		/*IRacerController.instance.SetSpeed(0);
-		IRacerController.instance.SendValues();*/
+		IRacerController.instance.Speed = 0;
+		IRacerController.instance.SetMovement();
 		QuitGame();
 	}
 
@@ -166,6 +166,9 @@ public class GameManager : MonoBehaviour
 			JsonUtility.FromJsonOverwrite(UDPClient.instance.GetExternalWalls(), map);
 			JsonUtility.FromJsonOverwrite(UDPClient.instance.GetInternalWalls(), map);
 			JsonUtility.FromJsonOverwrite(UDPClient.instance.GetStartLine(), map);
+
+			string jsonMap = JsonUtility.ToJson(map, true);
+			File.WriteAllText("Assets/Resources/ServerDataMap.txt", jsonMap);
 		}
 		else
 		{
@@ -215,9 +218,9 @@ public class GameManager : MonoBehaviour
 			myCar.LockMovement();
 			ghostCar.LockMovement();
 			timer.instance.StopTimer();
-			//carPauseSpeed = IRacerController.instance.GetSpeed();
-			//IRacerController.instance.SetSpeed(0);
-			//IRacerController.instance.SendValues();
+			carPauseSpeed = IRacerController.instance.Speed;
+			IRacerController.instance.Speed = 0;
+			IRacerController.instance.SetMovement();
 			ShowPauseMenu(true);
 			paused = true;
 		}		
@@ -229,8 +232,8 @@ public class GameManager : MonoBehaviour
 		{
 			myCar.UnlockMovement();
 			ghostCar.UnlockMovement();
-			//IRacerController.instance.SetSpeed(carPauseSpeed);
-			//IRacerController.instance.SendValues();
+			IRacerController.instance.Speed = carPauseSpeed;
+			IRacerController.instance.SetMovement();
 			timer.instance.StartTimer();
 			ShowPauseMenu(false);
 			paused = false;
@@ -240,6 +243,7 @@ public class GameManager : MonoBehaviour
 	public void QuitGame ()
 	{
 		UDPClient.instance.StopGame();
+		IRacerController.instance.Disconnect();
 		SceneManager.LoadScene(GameRules.instance.creationGameMenu);
 	}
 

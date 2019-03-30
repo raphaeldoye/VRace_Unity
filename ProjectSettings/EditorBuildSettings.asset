@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/RaceMap.unity
-    guid: cc5a4be68ac5b42438e7e697d844b304
+    path: Assets/Scenes/MainMenu.unity
+    guid: d0a3fb909a9024042b905f83f245543d
   - enabled: 1
     path: Assets/Scenes/CreationGameMenu.unity
     guid: ec9afbfcc37253e46a76303938b9aede
+  - enabled: 1
+    path: Assets/Scenes/RaceMap.unity
+    guid: cc5a4be68ac5b42438e7e697d844b304
   m_configObjects: {}

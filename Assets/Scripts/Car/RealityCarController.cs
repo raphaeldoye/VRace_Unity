@@ -5,25 +5,15 @@ using UnityEngine;
 
 public class RealityCarController : CarController
 {
-    class MyExternalLib
-    {
-        [DllImport("MyLibrary.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int InitComm(int number);
+   
 
-        [DllImport("MyLibrary.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool Disconnect();
-
-        [DllImport("MyLibrary.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern float Move(float accel, float angle, bool brake);
-    }
-
-    const int PORT = 3;
+   
 
     [SerializeField] [Range(0f,1f)] protected float speedMultiplier;
 
     private void Start()
 	{
-        var numb = MyExternalLib.InitComm(PORT);
+       
         ///TODO
         /// Set maxSpeed to the maximum value sent to the car (only for the speed)
         maxSpeed = 16;
@@ -33,34 +23,11 @@ public class RealityCarController : CarController
 	{
         if (Input.GetButtonDown("CloseDLL"))
         {
-            MyExternalLib.Disconnect();
+      //      MyExternalLib.Disconnect();
         }
-
-
-        float torqueIntensity = Input.GetAxis("Vertical");
-        float steeringIntensity = Input.GetAxis("Horizontal");
-
-
-        if(steeringIntensity < -0.5f)
-        {
-            steeringIntensity = -1f;
-        }
-        else if (steeringIntensity > 0.5f)
-        {
-            steeringIntensity = 1f;
-        }
-        else
-        {
-            steeringIntensity = 0f;
-        }
-
-
-        var a = MyExternalLib.Move(torqueIntensity, steeringIntensity, false);
-
-        Debug.Log(steeringIntensity);
-
-        ///TODO
-        ///set the logic of the car control
+		SetMotorTorque(Input.GetAxis("Vertical"));
+		SetSteeringAngle(Input.GetAxis("Horizontal"));
+		IRacerController.instance.SetMovement();
     }
 
     public override float GetCurrentSpeed()
@@ -78,13 +45,25 @@ public class RealityCarController : CarController
 
 	protected override void SetMotorTorque(float intensity, AxleInfo axle = null)             
 	{
-		///TODO
-		/// set the acceleration logic
+		IRacerController.instance.Speed = intensity;
 	}
 
 	protected override void SetSteeringAngle(float intensity, AxleInfo axle = null)
 	{
-		///TODO
-		/// set the steering logic
+		if (intensity < -0.5f)
+		{
+			intensity = -1f;
+		}
+		else if (intensity > 0.5f)
+		{
+			intensity = 1f;
+		}
+		else
+		{
+			intensity = 0f;
+		}
+
+		Debug.Log(intensity);
+		IRacerController.instance.Direction = intensity;
 	}
 }
