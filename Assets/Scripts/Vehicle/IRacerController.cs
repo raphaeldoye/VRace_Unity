@@ -19,6 +19,7 @@ public class IRacerController : MonoBehaviour
 
 	public static IRacerController instance = null;
 	public int PORT = 8;
+	public bool connected = false;
 
 	/*private float speed;
 	private float direction;*/
@@ -44,17 +45,39 @@ public class IRacerController : MonoBehaviour
 
 	public bool Connect()
 	{
-		var numb = MyExternalLib.InitComm(PORT);
-		return numb == 0;
+		if (!GameRules.instance.carSimulation)
+		{
+			var numb = MyExternalLib.InitComm(PORT);
+			connected = true;
+			return numb == 0;
+		}
+		else
+		{
+			connected = true;
+			return true;
+		}
+		
 	}
 
 	public bool Disconnect()
 	{
-		return MyExternalLib.Disconnect();
+		if (!GameRules.instance.carSimulation)
+		{
+			connected = false;
+			return MyExternalLib.Disconnect();
+		}
+		else
+		{
+			connected = false;
+			return true;
+		}
 	}
 
 	public void SetMovement()
 	{
-		var a = MyExternalLib.Move(Speed, Direction, false);
+		if (!GameRules.instance.carSimulation)
+		{
+			var a = MyExternalLib.Move(Speed, Direction, false);
+		}
 	}
 }

@@ -1187,7 +1187,7 @@ PrefabInstance:
     - target: {fileID: 2317766509857039608, guid: 26d02a406a985d34189a9c26b4a37a71,
         type: 3}
       propertyPath: simulateServer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2317766509857039608, guid: 26d02a406a985d34189a9c26b4a37a71,
         type: 3}
@@ -6415,6 +6415,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1775723896}
+    - target: {fileID: 6292311974730971365, guid: 32657b0be15f0c648bc1615af522e66a,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8109292263966637298, guid: 32657b0be15f0c648bc1615af522e66a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6823,11 +6828,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8109292262380968740, guid: 32657b0be15f0c648bc1615af522e66a,
-        type: 3}
-      propertyPath: m_Alpha
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7609138897242886961, guid: 32657b0be15f0c648bc1615af522e66a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -6838,40 +6838,23 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 803680737599457967, guid: 32657b0be15f0c648bc1615af522e66a,
+    - target: {fileID: 5431653762189344672, guid: 32657b0be15f0c648bc1615af522e66a,
         type: 3}
-      propertyPath: m_Alpha
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 256194085148213874, guid: 32657b0be15f0c648bc1615af522e66a,
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2000265593}
+    - target: {fileID: 1088571046142327319, guid: 32657b0be15f0c648bc1615af522e66a,
         type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1239.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 7921428966086614321, guid: 32657b0be15f0c648bc1615af522e66a,
-        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2000265593}
+    - target: {fileID: 1407795290, guid: 32657b0be15f0c648bc1615af522e66a, type: 3}
       propertyPath: m_Text
-      value: Connection to server failed...
+      value: COM8
       objectReference: {fileID: 0}
-    - target: {fileID: 5431653762189344672, guid: 32657b0be15f0c648bc1615af522e66a,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2000265593}
-    - target: {fileID: 5431653762189344672, guid: 32657b0be15f0c648bc1615af522e66a,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 1088571046142327319, guid: 32657b0be15f0c648bc1615af522e66a,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2000265593}
-    - target: {fileID: 1088571046142327319, guid: 32657b0be15f0c648bc1615af522e66a,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnToGameMenu
+    - target: {fileID: 1407795290, guid: 32657b0be15f0c648bc1615af522e66a, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32657b0be15f0c648bc1615af522e66a, type: 3}

@@ -32,7 +32,7 @@ public class GhostController : MonoBehaviour
 
 	void Start()
     {
-		gameObject.SetActive(false);
+		gameObject.SetActive(true);
 		vTransforms = JsonUtility.FromJson<GhostTransforms>(GameManager.instance.GetTextFromFile(GetFullPath()));
 		if (vTransforms == null)
 		{
@@ -43,6 +43,7 @@ public class GhostController : MonoBehaviour
 		{
 			GameManager.instance.SetRecordTime(vTransforms.time);
 		}
+		gameObject.SetActive(false);
 	}
 
 	private void FixedUpdate()

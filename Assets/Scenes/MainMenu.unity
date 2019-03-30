@@ -926,6 +926,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2317766509857039608, guid: 26d02a406a985d34189a9c26b4a37a71,
+        type: 3}
+      propertyPath: carSimulation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317766509857039608, guid: 26d02a406a985d34189a9c26b4a37a71,
+        type: 3}
+      propertyPath: simulateServer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317766509857039608, guid: 26d02a406a985d34189a9c26b4a37a71,
+        type: 3}
+      propertyPath: dynamicMapCreation
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26d02a406a985d34189a9c26b4a37a71, type: 3}
 --- !u!1 &1617691935

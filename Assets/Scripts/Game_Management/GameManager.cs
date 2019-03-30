@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 		else if (instance != this)
 			Destroy(gameObject);
 
-		DontDestroyOnLoad(gameObject);
+		//DontDestroyOnLoad(gameObject);
 	}
 
 	private void Start()
@@ -243,7 +243,7 @@ public class GameManager : MonoBehaviour
 	public void QuitGame ()
 	{
 		UDPClient.instance.StopGame();
-		IRacerController.instance.Disconnect();
+		//IRacerController.instance.Disconnect();
 		SceneManager.LoadScene(GameRules.instance.creationGameMenu);
 	}
 

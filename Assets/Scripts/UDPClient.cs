@@ -29,7 +29,6 @@ public class UDPClient : MonoBehaviour
 
 	private void Start()
 	{
-		server = new Server(ipAddress, port);
 		simulation = GameRules.instance.simulateServer;
 	}
 
@@ -37,8 +36,8 @@ public class UDPClient : MonoBehaviour
 	{
 		if (!simulation)
 		{
-			server.Connect();
-			return true;
+			server = new Server(ipAddress, port);
+			return server.Connect();
 		}	
 		else
 		{

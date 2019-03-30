@@ -55,6 +55,7 @@ public class MenuManager : MonoBehaviour
 		SetCanvasState(optionCanvas.GetComponent<CanvasGroup>(), false);
 		SetCanvasState(loading, false);
 		SetCanvasState(retryLoading, false);
+		SetCanvasState(serverRetryLoading, false);
 		SetCanvasState(portSelection, false);
 
 		carsSubmit.enabled = false;

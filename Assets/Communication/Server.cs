@@ -11,34 +11,51 @@ namespace Client.Communication
         private static UdpClient udpClient;
         private static IPEndPoint server;
         private Thread thread;
+		private static bool gameStreamEnable = false;
 
         public Server(string serverAddress, int port)
         {
             Console.WriteLine("Initialising server socket...");
             udpClient = new UdpClient();
-            server = new IPEndPoint(IPAddress.Parse(serverAddress), port);
-            thread = new Thread(new ThreadStart(GameStream));
+			udpClient.Client.ReceiveTimeout = 3000;
+			udpClient.Client.SendTimeout = 3000;
+			server = new IPEndPoint(IPAddress.Parse(serverAddress), port);
+          //  thread = new Thread(new ThreadStart(GameStream));
         }
 
-        public void Connect()
+        public bool Connect()
         {
             byte[] data = new byte[1024];
             string initMessage = "I want to play!";
+			bool connected = true;
+			try
+			{			
+				//CONNECT TO SERVER
+				udpClient.Connect(server);
+				Console.WriteLine("Connected to server");
 
-            //CONNECT TO SERVER
-            udpClient.Connect(server);
-            Console.WriteLine("Connected to server");
+				//SENDING INIT MESSAGE
+				data = Encoding.ASCII.GetBytes(initMessage);
+				udpClient.Send(data, data.Length);
 
-            //SENDING INIT MESSAGE
-            data = Encoding.ASCII.GetBytes(initMessage);
-            udpClient.Send(data, data.Length);
+				//CONFIRM ACCEPTANCE
+				var receivedData = udpClient.Receive(ref server);
+				string stringData = Encoding.ASCII.GetString(receivedData, 0, receivedData.Length);
+				while (stringData != "Welcome to VRace Server!")
+				{
+					receivedData = udpClient.Receive(ref server);
+					stringData = Encoding.ASCII.GetString(receivedData, 0, receivedData.Length);
+				}
+				var returnData = Encoding.ASCII.GetString(receivedData);
 
-            //CONFIRM ACCEPTANCE
-            var receivedData = udpClient.Receive(ref server);
-            var returnData = Encoding.ASCII.GetString(receivedData);
-
-            Console.WriteLine("From server: " + returnData);
-        }
+				Console.WriteLine("From server: " + returnData);
+			}
+			catch (SocketException se)
+			{
+				connected = false;
+			}
+			return connected;
+		}
 
         public void Send(string message)
         {
@@ -128,7 +145,8 @@ namespace Client.Communication
 
         public static void StartGameStream()
         {
-            byte[] data = new byte[1024];
+			gameStreamEnable = true;
+			byte[] data = new byte[1024];
             data = Encoding.ASCII.GetBytes("Position");
 
             //SENDING
@@ -145,7 +163,8 @@ namespace Client.Communication
 
         public void StartGame()
         {
-            thread.Start();
+			thread = new Thread(new ThreadStart(GameStream));
+			thread.Start();
         }
 
         public void EndGame()
@@ -153,15 +172,19 @@ namespace Client.Communication
             byte[] data = new byte[1024];
             data = Encoding.ASCII.GetBytes("EndGame");
 
-            //SENDING
-            udpClient.Send(data, data.Length);
-            thread.Join();
-        }
+			//SENDING           
+			if (thread != null && thread.IsAlive)
+			{
+				udpClient.Send(data, data.Length);
+				gameStreamEnable = false;
+				thread.Join();
+			}
+		}
 
         private static void GameStream()
         {
             StartGameStream();
-			while (true)
+			while (gameStreamEnable)
 			{			
 				VehicleTransforms.Push(GetPosition());
 			}

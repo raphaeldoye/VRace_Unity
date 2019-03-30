@@ -21,28 +21,22 @@ public class GameCreator : MonoBehaviour
 		menuManager.OpenLoading("Connecting to RC car...");
 		float initialTime = Time.time;
 		yield return null;
-		if (GameRules.instance.carSimulation)
+
+		if (IRacerController.instance.Connect())
 		{
-			yield return new WaitForSeconds(minimumLoadingDuration);
+			float waiting = minimumLoadingDuration - (Time.time - initialTime);
+			waiting = waiting < 0 ? 0 : waiting;
+			yield return new WaitForSeconds(waiting);
 			menuManager.OpenGameMenu();
 		}
 		else
 		{
-			if (IRacerController.instance.Connect())
-			{
-				float waiting = minimumLoadingDuration - (Time.time - initialTime);
-				waiting = waiting < 0 ? 0 : waiting;
-				yield return new WaitForSeconds(waiting);
-				menuManager.OpenGameMenu();
-			}
-			else
-			{
-				float waiting = minimumLoadingDuration - (Time.time - initialTime);
-				waiting = waiting < 0 ? 0 : waiting;
-				yield return new WaitForSeconds(waiting);
-				menuManager.OpenRetryLoading();
-			}
+			float waiting = minimumLoadingDuration - (Time.time - initialTime);
+			waiting = waiting < 0 ? 0 : waiting;
+			yield return new WaitForSeconds(waiting);
+			menuManager.OpenRetryLoading();
 		}
+
 	}
 
 	public IEnumerator ShowServerLoading()
@@ -69,7 +63,14 @@ public class GameCreator : MonoBehaviour
 
 	public void CreateGame()
 	{
-		menuManager.OpenPortSelection();
+		if (IRacerController.instance.connected)
+		{
+			ReturnToGameMenu();
+		}
+		else
+		{
+			menuManager.OpenPortSelection();
+		}
 	}
 
 	public void ConnectCar()
