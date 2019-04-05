@@ -29,8 +29,8 @@ public class NoiseFilter : MonoBehaviour
 
 	public void Filter(ref Vector3 currentPosition, ref Vector3 currentRotation, List<Vector3> positions, List<Vector3> rotations)
 	{
-		Vector3 positionVelocity = (currentPosition - previousPosition) / Time.deltaTime;
-		Vector3 angularVelocity = (currentRotation - previousRotation) / Time.deltaTime;
+		Vector3 positionVelocity = (currentPosition - previousPosition) / Time.fixedDeltaTime;
+		Vector3 angularVelocity = (currentRotation - previousRotation) / Time.fixedDeltaTime;
 
 		previousPosition = currentPosition;
 		previousRotation = currentRotation;

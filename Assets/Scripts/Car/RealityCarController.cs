@@ -5,18 +5,16 @@ using UnityEngine;
 
 public class RealityCarController : CarController
 {
-   
-
-   
-
     [SerializeField] [Range(0f,1f)] protected float speedMultiplier;
+	Vector3 previousFrame;
 
     private void Start()
 	{
        
         ///TODO
         /// Set maxSpeed to the maximum value sent to the car (only for the speed)
-        maxSpeed = 16;
+       // maxSpeed = 16;
+		previousFrame = new Vector3();
 	}
 
 	public override void CarControl()
@@ -32,9 +30,15 @@ public class RealityCarController : CarController
 
     public override float GetCurrentSpeed()
 	{
-		return 0.0f;
-		///TODO
-		///return car speed between 0 and the maxSpeed
+		float currentSpeed = 0;
+
+		if (previousFrame != Vector3.zero)
+		{
+			currentSpeed = (carRigidBody.position - previousFrame).magnitude / Time.fixedDeltaTime * speedConstant;
+		}
+		previousFrame = carRigidBody.position;
+
+		return currentSpeed;
 	}
 
 	protected override void SetBrakeTorque(float intensity)
@@ -46,6 +50,7 @@ public class RealityCarController : CarController
 	protected override void SetMotorTorque(float intensity, AxleInfo axle = null)             
 	{
 		IRacerController.instance.Speed = intensity;
+		//speed = Mathf.Abs(intensity);
 	}
 
 	protected override void SetSteeringAngle(float intensity, AxleInfo axle = null)

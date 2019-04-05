@@ -7,6 +7,7 @@ public class CarManager : MonoBehaviour
 	[SerializeField] private RealityCarController realCar;
 	[SerializeField] private VirtualCarController virtualCar;
 	[SerializeField] private float maxEngineSoundPitch = 2.5f;
+	[SerializeField] private List<Light> rearLights;
 	private AudioSource EngineSound;
 
 
@@ -45,14 +46,40 @@ public class CarManager : MonoBehaviour
 	{
 		if (!locked)
 		{
-			speed = car.CalculateSpeed();
-			car.CarControl();
+		//	speed = car.GetCurrentSpeed();
+			//car.CarControl();
+			UpdateRearLights();
 		}
 	}
 
 	private void UpdateEngineSound()
 	{
-		EngineSound.pitch = 1 + ((maxEngineSoundPitch - 1) * car.GetCurrentSpeed() / car.GetMaxSpeed());
+		//EngineSound.pitch = 1 + ((maxEngineSoundPitch - 1) * car.GetCurrentSpeed());
+			
+		float newPitch = 1 + ((maxEngineSoundPitch - 1) * car.GetCurrentSpeed() / car.GetMaxSpeed());
+		if (Mathf.Abs(newPitch) - EngineSound.pitch < maxEngineSoundPitch - 1)
+		{
+			EngineSound.pitch = newPitch;
+		}
+		
+	}
+
+	private void UpdateRearLights()
+	{
+		if(Input.GetAxis("Vertical") < 0)
+		{
+			for (int i = 0; i < rearLights.Count; i++)
+			{
+				rearLights[i].intensity = 4;
+			}
+		}
+		else
+		{
+			for (int i = 0; i < rearLights.Count; i++)
+			{
+				rearLights[i].intensity = 0;
+			}
+		}
 	}
 
 	public void LockMovement()
