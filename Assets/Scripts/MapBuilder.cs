@@ -54,7 +54,7 @@ public class MapBuilder
 	{
 		GameObject line = new GameObject("StartLine");
 		GameObject triggers = new GameObject("StartLineTriggers");
-		const float decalage = 300f;
+		const float decalage = 180f;
 
 		line.transform.SetParent(map.transform);
 		triggers.transform.SetParent(line.transform);

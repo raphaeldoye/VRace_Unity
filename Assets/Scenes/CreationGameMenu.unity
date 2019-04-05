@@ -1187,7 +1187,7 @@ PrefabInstance:
     - target: {fileID: 2317766509857039608, guid: 26d02a406a985d34189a9c26b4a37a71,
         type: 3}
       propertyPath: simulateServer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2317766509857039608, guid: 26d02a406a985d34189a9c26b4a37a71,
         type: 3}
@@ -4866,7 +4866,7 @@ PrefabInstance:
     - target: {fileID: 1347000974510140533, guid: 1d48553b9e401d349856ce7c6d423bcb,
         type: 3}
       propertyPath: minimumLoadingDuration
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1347000974510140534, guid: 1d48553b9e401d349856ce7c6d423bcb,
         type: 3}
