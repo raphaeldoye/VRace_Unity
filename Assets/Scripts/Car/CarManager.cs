@@ -47,7 +47,7 @@ public class CarManager : MonoBehaviour
 		if (!locked)
 		{
 		//	speed = car.GetCurrentSpeed();
-			//car.CarControl();
+			car.CarControl();
 			UpdateRearLights();
 		}
 	}
